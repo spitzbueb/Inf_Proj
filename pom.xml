@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>ch.zhaw.inf_project</groupId>
+  <artifactId>Informatik-Projekt</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>Informatik-Projekt</name>
+  <url>http://maven.apache.org</url>
+  <inceptionYear>2012</inceptionYear>
+  
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.6</source>
+            <target>1.6</target>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <artifactId>maven-site-plugin</artifactId>
+        <configuration>
+          <locales>de</locales>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
+  <!--
+  	A list of all remote repositories used in the project
+  -->
+  
+  <repositories>
+    <repository>
+      <id>mavenRepo</id>
+      <name>Maven Repository</name>
+      <url>http://repo1.maven.org/maven2/</url>
+    </repository>
+    <repository>
+      <id>apacheRepo</id>
+      <name>Apache Repository</name>
+      <url>http://apache.osuosl.org/maven-repository</url>
+    </repository>
+    <repository>
+      <id>apacheJavaRepo</id>
+      <name>Apache Java Repo</name>
+      <url>http://www.apache.org/dist/java-repository/maven</url>
+    </repository>
+  </repositories>
+    
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
