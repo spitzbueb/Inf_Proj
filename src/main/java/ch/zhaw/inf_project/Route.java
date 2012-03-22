@@ -7,5 +7,7 @@ public class Route {
 	
 	public Route(Missile missile){
 		this.missile = missile;
+		this.earth = new Earth();
+		this.satellite = new Satellite();
 	}
 }
