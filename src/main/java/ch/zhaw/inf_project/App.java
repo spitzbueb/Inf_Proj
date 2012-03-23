@@ -1,6 +1,9 @@
 package ch.zhaw.inf_project;
 
+import java.awt.Color;
 import java.awt.Container;
+import java.awt.Frame;
+import java.awt.Graphics;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -12,9 +15,10 @@ import javax.swing.JMenuItem;
  * Hello world!
  *
  */
-public class App 
+public class App extends Frame
 {
 	private JFrame frame;
+	Circle[] circle = new Circle[3];
     
 	public App() {
 		createGui();
@@ -34,16 +38,19 @@ public class App
 		JMenuItem schliessen = new JMenuItem("Schliessen");
 		dateiMenu.add(schliessen);
 		JMenuItem hilfe = new JMenuItem("Hilfe");
-		JMenuItem ueber = new JMenuItem("Über");
+		JMenuItem ueber = new JMenuItem("ï¿½ber");
 		hilfeMenu.add(hilfe);
 		hilfeMenu.add(ueber);
 		
 		Container contentPane = frame.getContentPane();
 		
+		contentPane.add(new Circle());
+		
 		frame.setSize(800,800);
 		frame.setVisible(true);
 		
 	}
+	
 	public static void main(String[] args) {
 		new App();
 	}
