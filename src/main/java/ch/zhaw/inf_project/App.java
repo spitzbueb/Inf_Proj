@@ -4,11 +4,15 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Frame;
 import java.awt.Graphics;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 
 /**
@@ -18,9 +22,12 @@ import javax.swing.JMenuItem;
 public class App extends Frame
 {
 	private JFrame frame;
-	Circle[] circle = new Circle[3];
+	private Earth earth = new Earth();
+	private SatelliteRoute orbit = new SatelliteRoute();
+	private Satellite satellite = new Satellite();
     
 	public App() {
+
 		createGui();
     }
 	
@@ -44,11 +51,40 @@ public class App extends Frame
 		
 		Container contentPane = frame.getContentPane();
 		
-		contentPane.add(new Circle());
+		JPanel circlePanel = new CirclePanel(earth,orbit,satellite);
+		contentPane.add(circlePanel);
+		
+		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher()
+		{
+
+			@Override
+			public boolean dispatchKeyEvent(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				if(arg0.getID() == KeyEvent.KEY_PRESSED)
+				{
+					handleKeyPress(arg0.getKeyCode());
+					return true;
+				}
+				
+				return false;
+			}
+			
+		});
 		
 		frame.setSize(800,800);
 		frame.setVisible(true);
 		
+	}
+	
+	public void handleKeyPress(int keyCode)
+	{
+		switch(keyCode)
+		{
+		case 32	:
+			satellite.setPosy(satellite.getPosy()+1);
+			frame.repaint();
+;		break;
+		}
 	}
 	
 	public static void main(String[] args) {
