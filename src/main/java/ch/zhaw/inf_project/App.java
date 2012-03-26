@@ -19,12 +19,14 @@ import javax.swing.JPanel;
  * Hello world!
  *
  */
-public class App extends Frame
+public class App extends Frame implements Runnable
 {
 	private JFrame frame;
 	private Earth earth = new Earth();
 	private SatelliteRoute orbit = new SatelliteRoute();
 	private Satellite satellite = new Satellite();
+	Thread animThread;
+	boolean animation = false;
     
 	public App() {
 
@@ -81,9 +83,51 @@ public class App extends Frame
 		switch(keyCode)
 		{
 		case 32	:
-			satellite.setPosy(satellite.getPosy()+1);
+			if(animation == false)
+			{
+				animation = true;
+				start();
+			}
+			else
+			{
+				animation = false;
+				stop();
+			}
+		break;
+		}
+	}
+	
+	public void start()
+	{
+		if(animThread == null)
+		{
+			animThread = new Thread(this);
+			animThread.start();
+		}
+	}
+	
+	public void stop()
+	{
+		if(animThread != null)
+		{
+			animThread.stop();
+			animThread = null;
+		}
+	}
+	
+	public void run()
+	{
+		while(Thread.currentThread() == animThread)
+		{
+			satellite.setPosx(satellite.getPosx()-1);
 			frame.repaint();
-;		break;
+			
+			try {
+				Thread.currentThread().sleep(60);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
