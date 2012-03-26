@@ -1,5 +1,6 @@
 package ch.zhaw.inf_project;
 
+
 public class Earth {
 	
 	private double gravitation;
@@ -17,4 +18,5 @@ public class Earth {
 	public double getGravitation(){
 		return gravitation;
 	}
+	
 }
