@@ -3,12 +3,13 @@ package ch.zhaw.inf_project;
 public class Satellite {
 	
 	private double coordinate;
-	private int posx,posy,rad;
+	private int posx,posy,posz,rad;
 	
 	public Satellite(){
 		this.coordinate = 10.1;
 		this.posx = 687;
 		this.posy = 387;
+		this.posz = 0;
 		this.rad = 26;
 	}
 	public int getPosx() {

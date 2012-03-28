@@ -117,11 +117,14 @@ public class App extends Frame implements Runnable
 	
 	public void run()
 	{
+		double c = 0.01;
+		int t = 1;
 		while(Thread.currentThread() == animThread)
 		{
-			satellite.setPosx(satellite.getPosx()-1);
+			satellite.setPosx((int)(orbit.getRad() * Math.sin(c * t)));
+			satellite.setPosy((int)(orbit.getRad() * Math.cos(c * t)));
 			frame.repaint();
-			
+			t++;
 			try {
 				Thread.currentThread().sleep(60);
 			} catch (InterruptedException e) {
