@@ -1,7 +1,7 @@
 package ch.zhaw.inf_project;
 
 public class SatelliteRoute {
-	private int posx,posy,rad;
+	private int posx,posy,radx,rady;
 	public int getPosx() {
 		return posx;
 	}
@@ -17,13 +17,21 @@ public class SatelliteRoute {
 	public void setPosy(int posy) {
 		this.posy = posy;
 	}
-
-	public int getRad() {
-		return rad;
+	
+	public int getRady() {
+		return rady;
 	}
 
-	public void setRad(int rad) {
-		this.rad = rad;
+	public void setRady(int rady) {
+		this.rady = rady;
+	}
+	
+	public int getRadx() {
+		return radx;
+	}
+
+	public void setRadx(int radx) {
+		this.radx = radx;
 	}
 
 	public String getColor() {
@@ -39,7 +47,8 @@ public class SatelliteRoute {
 	public SatelliteRoute()
 	{
 		this.posx = 100;
-		this.posy = 100;
-		this.rad = 600;
+		this.posy = 200;
+		this.radx = 600;
+		this.rady = 400; 	
 	}
 }

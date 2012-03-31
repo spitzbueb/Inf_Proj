@@ -27,7 +27,7 @@ public class CirclePanel extends JPanel{
 		
 		g.setColor(Color.BLACK);
 		g.fillOval(satellite.getPosx(), satellite.getPosy(), satellite.getRad(), satellite.getRad());
-		g.drawOval(orbit.getPosx(), orbit.getPosy(), orbit.getRad(), orbit.getRad());
+		g.drawOval(orbit.getPosx(), orbit.getPosy(), orbit.getRadx(), orbit.getRady());
 
 	}
 }

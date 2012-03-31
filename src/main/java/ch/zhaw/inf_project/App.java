@@ -13,6 +13,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import ch.zhaw.inf_project.Animation;
 
 
 /**
@@ -117,14 +118,11 @@ public class App extends Frame implements Runnable
 	
 	public void run()
 	{
-		double c = 0.05;
-		int t = 1;
 		while(Thread.currentThread() == animThread)
 		{
-			satellite.setPosx(400 + ((int)((orbit.getRad()/2) * Math.sin(c * t))));
-			satellite.setPosy(400 + ((int)((orbit.getRad()/2) * Math.cos(c * t))));
+			Animation.moveSatellite(satellite, animThread, orbit);
 			frame.repaint();
-			t++;
+		
 			try {
 				Thread.currentThread().sleep(60);
 			} catch (InterruptedException e) {
