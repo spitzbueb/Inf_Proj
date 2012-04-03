@@ -9,7 +9,7 @@ public class Calculation {
 		
 		double uBetrag;
 		
-		// Änderung der Werte durch die Anziehungskraft der Erde
+		// ï¿½nderung der Werte durch die Anziehungskraft der Erde
 		u[0] = satelliteCoordinate[3] - force[0];
 		u[1] = satelliteCoordinate[4] - force[1];
 		u[2] = satelliteCoordinate[5] - force[2];
@@ -31,6 +31,6 @@ public class Calculation {
 	public double[]  force(double[] satelliteCoordinate, double[] earthCoordinate){
 		
 		
-		return 0;
+		return null;
 	}
 }
