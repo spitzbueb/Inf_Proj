@@ -17,7 +17,13 @@ import ch.zhaw.inf_project.Animation;
 
 
 /**
- * Hello world!
+ * Die Klass App.java hat die Aufgabe das Fenster (GUI) zu zeichnen.
+ * Sie ist die Hauptklasse, welche ausgeführt wird.
+ * Momentan kann per Leertaste die Animation gestoppt und gestartet werden.
+ * App.java ist erweitert mit Frame und implementier Runnable.
+ * 
+ * @see GUI mit Planet, Satellit und Orbit
+ * @author Piano Gennaro
  *
  */
 public class App extends Frame implements Runnable
@@ -29,11 +35,21 @@ public class App extends Frame implements Runnable
 	Thread animThread;
 	boolean animation = false;
     
+	/**
+	 * Klassenkonstruktor:
+	 * startet Methode createGUI();
+	 */
 	public App() {
 
 		createGui();
     }
 	
+	/**
+	 * Zeichnet das Fenster mit allen Inhalten.
+	 * Der KeyboardListener wird erstellt.
+	 * 
+	 * @see Programmfenster wird geöffnet
+	 */
 	private void createGui(){
 		JMenuBar bar = new JMenuBar();
 		frame = new JFrame("Informatik Projekt 2");
@@ -79,6 +95,13 @@ public class App extends Frame implements Runnable
 		
 	}
 	
+	/**
+	 * Verarbeitet den eingebenen Keycode.
+	 * Wenn die Leertaste gedrückt wird, wird die Animation gestoppt oder gestartet.
+	 * Das ganze durch die Variable "animation".
+	 * 
+	 * @param keyCode
+	 */
 	public void handleKeyPress(int keyCode)
 	{
 		switch(keyCode)
@@ -98,6 +121,10 @@ public class App extends Frame implements Runnable
 		}
 	}
 	
+	/**
+	 * Startet den Thread für die Animation
+	 */
+	
 	public void start()
 	{
 		if(animThread == null)
@@ -106,6 +133,10 @@ public class App extends Frame implements Runnable
 			animThread.start();
 		}
 	}
+	
+	/**
+	 * Stoppt den Thread der Animation.
+	 */
 	
 	public void stop()
 	{
@@ -116,6 +147,11 @@ public class App extends Frame implements Runnable
 		}
 	}
 	
+	/**
+	 * Standardklasse für Thread. App implementiert Runnable.
+	 * Run lässt die Animation durchlaufen (während der momentane Thread
+	 * gleich wie "animThread" ist. Dann wird Frame neugezeichnet.
+	 */
 	public void run()
 	{
 		while(Thread.currentThread() == animThread)
