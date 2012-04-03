@@ -1,5 +1,13 @@
 package ch.zhaw.inf_project;
 
+/**
+ * Klasse übernimmt die Aufgabe des Rechnens. 
+ * Berechnet ...
+ * 
+ * @author Piano Gennaro
+ *
+ */
+
 public class Calculation {
 	public double[] newCoordinate(double[] satelliteCoordinate, double[] earthCoordinate){
 		double res[] = new double[6];
@@ -9,7 +17,7 @@ public class Calculation {
 		
 		double uBetrag;
 		
-		// �nderung der Werte durch die Anziehungskraft der Erde
+		// Aenderung der Werte durch die Anziehungskraft der Erde
 		u[0] = satelliteCoordinate[3] - force[0];
 		u[1] = satelliteCoordinate[4] - force[1];
 		u[2] = satelliteCoordinate[5] - force[2];
@@ -28,6 +36,14 @@ public class Calculation {
 		return satelliteCoordinate;
 	}
 	
+	
+	/**
+	 * Berechnet Krafteinwirkung auf ...
+	 * 
+	 * @param satelliteCoordinate
+	 * @param earthCoordinate
+	 * @return
+	 */
 	public double[]  force(double[] satelliteCoordinate, double[] earthCoordinate){
 		
 		

@@ -1,6 +1,6 @@
 package ch.zhaw.inf_project;
 
-public class SatelliteRoute {
+public class Orbit {
 	private int posx,posy,radx,rady;
 	public int getPosx() {
 		return posx;
@@ -44,7 +44,7 @@ public class SatelliteRoute {
 
 	private String color = "black";
 	
-	public SatelliteRoute()
+	public Orbit()
 	{
 		this.posx = 100;
 		this.posy = 200;

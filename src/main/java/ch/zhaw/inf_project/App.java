@@ -30,7 +30,7 @@ public class App extends Frame implements Runnable
 {
 	private JFrame frame;
 	private Earth earth = new Earth();
-	private SatelliteRoute orbit = new SatelliteRoute();
+	private Orbit orbit = new Orbit();
 	private Satellite satellite = new Satellite();
 	Thread animThread;
 	boolean animation = false;

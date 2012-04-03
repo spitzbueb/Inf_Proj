@@ -1,5 +1,11 @@
 package ch.zhaw.inf_project;
 
+/**
+ * Klasse lässt Route anzeigen
+ * 
+ * @author Piano Gennaro
+ *
+ */
 public class Route {
 	private Earth earth;
 	private Satellite satellite;
