@@ -21,7 +21,7 @@ public class Calculation {
 		u[0] = satelliteCoordinate[3] - force[0];
 		u[1] = satelliteCoordinate[4] - force[1];
 		u[2] = satelliteCoordinate[5] - force[2];
-		uBetrag = Math.sqrt(Math.sqrt(u[0]*u[0] +  u[1]*u[1]) + u[2]*u[2]);
+		uBetrag = Math.sqrt(u[0]*u[0] +  u[1]*u[1] + u[2]*u[2]);
 		
 		//Ableitung des Weges ist die Geschwindigkeit
 		res[0] = satelliteCoordinate[3];
