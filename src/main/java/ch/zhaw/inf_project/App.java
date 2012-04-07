@@ -156,7 +156,7 @@ public class App extends Frame implements Runnable
 	{
 		while(Thread.currentThread() == animThread)
 		{
-			Animation.moveSatellite(satellite, animThread, orbit);
+			Animation.moveSatellite(satellite, animThread, orbit, earth);
 			frame.repaint();
 		
 			try {

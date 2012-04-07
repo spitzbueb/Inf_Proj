@@ -10,7 +10,7 @@ package ch.zhaw.inf_project;
 public class Satellite {
 	
 	private double coordinate;
-	private int posx,posy,posz,rad;
+	private int posx,posy,posz,rad,mass;
 	
 	/**
 	 * Konstruktor
@@ -23,6 +23,25 @@ public class Satellite {
 		this.posy = 387;
 		this.posz = 0;
 		this.rad = 26;
+		this.mass = 1000;
+	}
+	
+	/**
+	 * Gibt das Gewicht wieder
+	 * @return weight
+	 */
+	public int getMass()
+	{
+		return mass;
+	}
+	
+	/**
+	 * Setzt das Gewicht neu
+	 * @param weight
+	 */
+	public void setMass(int mass)
+	{
+		this.mass = mass;
 	}
 	
 	/**

@@ -10,7 +10,24 @@ public class Earth {
 	
 	private double gravitation;
 	private double coordinate;
-	private int posx,posy,rad;
+	private int posx,posy,rad,mass;
+	
+	/**
+	 * Gibt Masse der Erde zurück
+	 * @return mass
+	 */
+	public int getMass() {
+		return mass;
+	}
+
+	/**
+	 * Setzt die masse der Erde neu
+	 * @param mass
+	 */
+	public void setMass(int mass) {
+		this.mass = mass;
+	}
+
 	private String color = "green";
 	
 	/**
@@ -87,6 +104,7 @@ public class Earth {
 		this.posx=300;
 		this.posy=300;
 		this.rad=200;
+		this.mass = 1000000;
 	}
 	
 	/**
