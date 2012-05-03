@@ -65,25 +65,28 @@ public class Calculation {
 	 * @param h
 	 * @return coordinates
 	 */
-	public double[]  euler(double tAnfang, double tEnde, double[] yAnfang, double h, Earth earth)
+	public double[]  euler(double tAnfang, double tEnde, double[] yAnfang, int n, Earth earth)
 	{
 		double[] y = yAnfang;
 		double k[];
 		double t = tAnfang;
-	
+		double h;
 		
-		int i,n;
-		
-		n = (int)(Math.round(Math.abs((tEnde - tAnfang)/h)));
+		int i
+
 		h = (tEnde - tAnfang)/n;
 		
 		for(i =1;i<n;i++)
 		{
 			k = diff_sat(t,y,earth);
 			for (int m=0;m<k.length;m++)
-				//...
-		}
+			{
+				k = diff_sat(t,yAnfang,earth);
+				y = y + h*k;  //Bearbeiten für Vectoraddition
+				t = t + h;
+			}
 		
-		return null;
+		return y;
 	}
 }
+;
