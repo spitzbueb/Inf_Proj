@@ -30,11 +30,12 @@ public class Animation
 	 * @param thread
 	 * @param orbit
 	 */
-	public static void moveSatellite(Satellite satellite, Thread thread, Orbit orbit) 
+	public static void moveSatellite(Satellite satellite, Thread thread, Orbit orbit, Earth earth) 
 	{
-			satellite.setPosx(400 + ((int)((orbit.getRadx()/2) * Math.sin(c * t))));
-			satellite.setPosy(400 + ((int)((orbit.getRady()/2) * Math.cos(c * t))));
+			satellite.setPosx(400 + (((orbit.getRadx()/2) * Math.sin(c * t))));
+			satellite.setPosy(400 + (((orbit.getRady()/2) * Math.cos(c * t))));
 			t++;
 	}
 	
+	public static void 
 }

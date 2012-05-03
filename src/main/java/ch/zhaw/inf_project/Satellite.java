@@ -10,7 +10,7 @@ package ch.zhaw.inf_project;
 public class Satellite {
 	
 	private double coordinate;
-	private int posx,posy,posz,rad,mass;
+	private double posx,posy,posz,rad,mass,vx,vy,vz;
 	
 	/**
 	 * Konstruktor
@@ -22,15 +22,66 @@ public class Satellite {
 		this.posx = 687;
 		this.posy = 387;
 		this.posz = 0;
+		this.vx = 10;
+		this.vy = 2;
+		this.vz = 0;
 		this.rad = 26;
-		this.mass = 1000;
+		this.mass = 1;
 	}
 	
+	/**
+	 * Gibt Geschwindigkeit in X-Richtung wieder
+	 * @return vx
+	 */
+	public double getVx() {
+		return vx;
+	}
+
+	/**
+	 * Setzt X-Geschwindigkeit neu
+	 * @param vx
+	 */
+	public void setVx(double vx) {
+		this.vx = vx;
+	}
+
+	/**
+	 * Gibt Geschwindigkeit in Y-Richtung wieder
+	 * @return vy
+	 */
+	public double getVy() {
+		return vy;
+	}
+
+	/**
+	 * Setzt Y-Geschwindigkeit neu
+	 * @param vy
+	 */
+	public void setVy(double vy) {
+		this.vy = vy;
+	}
+
+	/**
+	 * Gibt Geschwindigkeit in Z-Richtung wieder
+	 * @return vz
+	 */
+	public double getVz() {
+		return vz;
+	}
+
+	/**
+	 * Setzt Z-Geschwindigkeit neu
+	 * @param vz
+	 */
+	public void setVz(double vz) {
+		this.vz = vz;
+	}
+
 	/**
 	 * Gibt das Gewicht wieder
 	 * @return weight
 	 */
-	public int getMass()
+	public double getMass()
 	{
 		return mass;
 	}
@@ -39,7 +90,7 @@ public class Satellite {
 	 * Setzt das Gewicht neu
 	 * @param weight
 	 */
-	public void setMass(int mass)
+	public void setMass(double mass)
 	{
 		this.mass = mass;
 	}
@@ -48,7 +99,7 @@ public class Satellite {
 	 * Gibt X-Koordinate wieder
 	 * @return posx
 	 */
-	public int getPosx() {
+	public double getPosx() {
 		return posx;
 	}
 
@@ -56,7 +107,7 @@ public class Satellite {
 	 * Setzt X-Koordinate neu
 	 * @param posx
 	 */
-	public void setPosx(int posx) {
+	public void setPosx(double posx) {
 		this.posx = posx;
 	}
 
@@ -64,7 +115,7 @@ public class Satellite {
 	 * Gibt Y-Koordinate wieder
 	 * @return posy
 	 */
-	public int getPosy() {
+	public double getPosy() {
 		return posy;
 	}
 
@@ -73,7 +124,7 @@ public class Satellite {
 	 * Setzt Y-Koordinate neu
 	 * @param posy
 	 */
-	public void setPosy(int posy) {
+	public void setPosy(double posy) {
 		this.posy = posy;
 	}
 
@@ -81,7 +132,7 @@ public class Satellite {
 	 * Gibt Radius wieder
 	 * @return rad
 	 */
-	public int getRad() {
+	public double getRad() {
 		return rad;
 	}
 
@@ -89,7 +140,7 @@ public class Satellite {
 	 * Setzt Radius neu
 	 * @param rad
 	 */
-	public void setRad(int rad) {
+	public void setRad(double rad) {
 		this.rad = rad;
 	}
 

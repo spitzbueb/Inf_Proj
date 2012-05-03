@@ -104,7 +104,7 @@ public class Earth {
 		this.posx=300;
 		this.posy=300;
 		this.rad=200;
-		this.mass = 1000000;
+		this.mass = 100000;
 	}
 	
 	/**
