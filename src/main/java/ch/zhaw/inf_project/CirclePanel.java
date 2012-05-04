@@ -27,7 +27,6 @@ public class CirclePanel extends JPanel{
 	public CirclePanel(Earth earth,Orbit orbit,Satellite satellite)
 	{
 		this.earth = earth;
-		this.orbit = orbit;
 		this.satellite = satellite;
 	}
 	
@@ -44,7 +43,6 @@ public class CirclePanel extends JPanel{
 		
 		g.setColor(Color.BLACK);
 		g.fillOval((int) satellite.getPosx(),(int) satellite.getPosy(),(int) satellite.getRad(),(int) satellite.getRad());
-		g.drawOval(orbit.getPosx(), orbit.getPosy(), orbit.getRadx(), orbit.getRady());
-
+		
 	}
 }

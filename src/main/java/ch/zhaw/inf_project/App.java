@@ -160,7 +160,7 @@ public class App extends Frame implements Runnable
 			frame.repaint();
 		
 			try {
-				Thread.currentThread().sleep(60);
+				Thread.currentThread().sleep(10);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

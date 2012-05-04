@@ -1,5 +1,6 @@
 package ch.zhaw.inf_project;
 
+
 /**
  * Die Klasse Animation übernimmt das setzen der neuen 
  * Positionen des Satelliten.
@@ -11,8 +12,9 @@ package ch.zhaw.inf_project;
 
 public class Animation
 {
-	static double c = 0.05;
-	static int t = 1;
+	static double[] yAnfang = new double[4];
+	static double tAnfang = 0;
+	int n = 10;
 	
 	/**
 	 * Standard Konstruktor
@@ -32,10 +34,24 @@ public class Animation
 	 */
 	public static void moveSatellite(Satellite satellite, Thread thread, Orbit orbit, Earth earth) 
 	{
-			satellite.setPosx(400 + (((orbit.getRadx()/2) * Math.sin(c * t))));
-			satellite.setPosy(400 + (((orbit.getRady()/2) * Math.cos(c * t))));
-			t++;
+			Calculation calc = new Calculation();
+			
+			yAnfang[0] = satellite.getPosx();
+			yAnfang[1] = satellite.getPosy();
+			yAnfang[2] = satellite.getVx();
+			yAnfang[3] = satellite.getVy();
+			
+			double[] y = calc.euler(tAnfang, tAnfang+0.05, yAnfang, 100000);
+			
+			satellite.setPosx(y[0]);
+			satellite.setPosy(y[1]);
+			satellite.setVx(y[2]);
+			satellite.setVy(y[3]);
+			
+			tAnfang=tAnfang+0.05;
+			
+			//satellite.setPosx(400 + (((orbit.getRadx()/2) * Math.sin(c * t))));
+			//satellite.setPosy(400 + (((orbit.getRady()/2) * Math.cos(c * t))));
+			//t++;
 	}
-	
-	public static void 
 }

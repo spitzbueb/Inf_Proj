@@ -9,84 +9,68 @@ package ch.zhaw.inf_project;
  */
 
 public class Calculation {
-	//-----------------------------------------------------------------------------------------------------------------------------------------------------
-	/**
-	 * Die Methode diff_sat errechnet aus der gegebenen Position
-	 * die Ableitung. Aus der Ableitung von z können wir dann die aktuelle Geschwindigkeit
-	 * und die Beschleunigung ausrechnen. Zurück wird ein Vektor gegeben, welcher die Geschwindigkeit
-	 * und die Beschleunigung enthält.
-	 * @param t
-	 * @param z
-	 * @param earth
-	 * @param satellite
-	 * @return res
-	 */
-	public double[] diff_sat(double t, double[] z, Earth earth)
+	public double[] diff_sat(double[] yAnfang, Earth earth)
 	{
-		// Eingabevektor für Ausgangsgrössen
-		// z[0] = x-Wert der Position
-		// z[1] = y-Wert der Position
-		// z[2] = Wert der Geschwindigkeit in x-Richtung
-		// z[3] = Wert der Geschwindigkeit in y-Richtung
-		
-		// res = Resultat der Ableitung der Eingabevektoren
-		double[] res = new double[4];
-		
-		// Systemgrössen
-		double g = 1;
-		double m = 100000;
-		
+		double[] z = new double[yAnfang.length];
+		double[] res = new double[yAnfang.length];
 		double[] u = new double[2];
-		double uBetrag;
+		double uBetrag,g,m;
 		
-		// Berechnung der Distanz zwischen Satellit und Erde
+		g = 10;
+		m = earth.getMass();
+		
+		for(int i=0;i<yAnfang.length;i++)
+			z[i] = yAnfang[i];
+		
 		u[0] = z[0] - earth.getPosx();
 		u[1] = z[1] - earth.getPosy();
+		
 		uBetrag = Math.sqrt(u[0]*u[0] + u[1]*u[1]);
 		
-		// Ableiten des Eingabevektors. Da die Positionen x und y bei der Ableitung zur Geschwindigkeit 
-		// werden, können wir sie direkt übertragen!
-		
 		res[0] = z[2];
-		res[0] = z[3];
+		res[1] = z[3];
 		
-		// Die Beschleunigung wird durch -g * m * (u/uBetrag^3) berechnet.
 		res[2] = -g * m * (u[0]/Math.pow(uBetrag, 3));
 		res[3] = -g * m * (u[1]/Math.pow(uBetrag, 3));
 		
 		return res;
 	}
-	//--------------------------------------------------------------------------------------------------------------------------------
-	/**
-	 * Die Methode euler nähert die Flugbahn des Satelliten durch ein Polygon an.
-	 * @param tAnfang
-	 * @param tEnde
-	 * @param yAnfang
-	 * @param h
-	 * @return coordinates
-	 */
-	public double[]  euler(double tAnfang, double tEnde, double[] yAnfang, int n, Earth earth)
+//-------------------------------------------------------------------------
+	public double[] euler(double tAnfang,double tEnde,double[] yAnfang, int n)
 	{
+		double h = (tEnde-tAnfang)/n;
+		
 		double[] y = yAnfang;
-		double k[];
+		double[] k;
 		double t = tAnfang;
-		double h;
 		
-		int i
-
-		h = (tEnde - tAnfang)/n;
-		
-		for(i =1;i<n;i++)
+		for(int i=1;i<=n;i++)
 		{
-			k = diff_sat(t,y,earth);
-			for (int m=0;m<k.length;m++)
-			{
-				k = diff_sat(t,yAnfang,earth);
-				y = y + h*k;  //Bearbeiten für Vectoraddition
-				t = t + h;
-			}
+			k = diff_sat(y,new Earth());
+			
+			y = addVector(y,multScalarVector(h,k));
+			t = t+h;
+		}
 		
 		return y;
 	}
+//------------------------------------------------------------------------------
+	public double[] multScalarVector(double h, double[] k)
+	{
+		for(int i = 0; i<k.length;i++)
+		{
+			k[i]=h*k[i];
+		}
+		
+		return k;
+	}
+//------------------------------------------------------------------------
+	public double[] addVector(double[] y, double[] k)
+	{
+		for(int i = 0;i<y.length;i++)
+		{
+			y[i] = y[i] + k[i];
+		}
+		return y;
+	}
 }
-;
