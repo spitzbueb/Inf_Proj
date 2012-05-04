@@ -41,14 +41,14 @@ public class Animation
 			yAnfang[2] = satellite.getVx();
 			yAnfang[3] = satellite.getVy();
 			
-			double[] y = calc.euler(tAnfang, tAnfang+0.05, yAnfang, 100000);
+			double[] y = calc.euler(tAnfang, tAnfang+0.1, yAnfang, 100000);
 			
 			satellite.setPosx(y[0]);
 			satellite.setPosy(y[1]);
 			satellite.setVx(y[2]);
 			satellite.setVy(y[3]);
 			
-			tAnfang=tAnfang+0.05;
+			tAnfang=tAnfang+0.1;
 			
 			//satellite.setPosx(400 + (((orbit.getRadx()/2) * Math.sin(c * t))));
 			//satellite.setPosy(400 + (((orbit.getRady()/2) * Math.cos(c * t))));
