@@ -13,6 +13,7 @@ package ch.zhaw.inf_project;
 public class Animation
 {
 	static double[] yAnfang = new double[4];
+	static double[] miAnfang = new double[4];
 	static double tAnfang = 0;
 	int n = 10;
 	
@@ -32,7 +33,7 @@ public class Animation
 	 * @param thread
 	 * @param orbit
 	 */
-	public static void moveSatellite(Satellite satellite, Thread thread, Orbit orbit, Earth earth) 
+	public static void moveSatellite(Satellite satellite, Thread thread, Orbit orbit, Earth earth,Missile missile) 
 	{
 			Calculation calc = new Calculation();
 			
@@ -41,12 +42,24 @@ public class Animation
 			yAnfang[2] = satellite.getVx();
 			yAnfang[3] = satellite.getVy();
 			
-			double[] y = calc.euler(tAnfang, tAnfang+0.1, yAnfang, 100000);
+			miAnfang[0] = missile.getPosx();
+			miAnfang[1] = missile.getPosy();
+			miAnfang[2] = missile.getVx();
+			miAnfang[3] = missile.getPosy();
+			
+			
+			double[] y = calc.euler_sat(tAnfang, tAnfang+0.1, yAnfang, 10000);
+			double[] yMissile = calc.euler_mis(tAnfang, tAnfang+0.1, miAnfang, 10000);
 			
 			satellite.setPosx(y[0]);
 			satellite.setPosy(y[1]);
 			satellite.setVx(y[2]);
 			satellite.setVy(y[3]);
+			
+			missile.setPosx(yMissile[0]);
+			missile.setPosy(yMissile[1]);
+			missile.setVx(yMissile[2]);
+			missile.setVy(yMissile[3]);
 			
 			tAnfang=tAnfang+0.1;
 			

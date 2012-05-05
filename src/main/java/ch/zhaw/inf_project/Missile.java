@@ -10,10 +10,10 @@ public class Missile {
 	
 	private double angle;
 	private double velocity;
-	private double acceleration;
 	private int tank;
-	private double startCoordinate;
+	private double posx,posy,vx,vy;
 	private double destinationCoordinate;
+	private double mass;
 	
 	
 	/**
@@ -24,15 +24,47 @@ public class Missile {
 	 */
 	public Missile(int tank){
 		this.tank = tank;
+		this.mass = 50;
+		this.vx = 0;
+		this.vy = 0;
+		this.posx = 394;
+		this.posy = 295;
 	}
 	
 	/**
-	 * Setzt Start-Koordinaten
-	 * 
-	 * @param startCoordinate
+	 * Gibt X-Koordinate aus
+	 * @return posx
 	 */
-	public void setStartCoordinate(double startCoordinate){
-		this.startCoordinate = startCoordinate;
+	public double getPosx()
+	{
+		return posx;
+	}
+	
+	/** 
+	 * Gibt Y-Koordinate aus
+	 * @return posy
+	 */
+	public double getPosy()
+	{
+		return posy;
+	}
+	
+	/**
+	 * Setzt X-Koordinate
+	 * @param x
+	 */
+	public void setPosx(double x)
+	{
+		this.posx = x;
+	}
+	
+	/**
+	 * Setzt Y-Koordinate
+	 * @param y
+	 */
+	public void setPosy(double y)
+	{
+		this.posy = y;
 	}
 	
 	/**
@@ -45,12 +77,21 @@ public class Missile {
 	}
 	
 	/**
-	 * Setzt Beschleunigung
-	 * 
-	 * @param acceleration
+	 * Setzt die Geschwindigkeit in X-Richtung
+	 * @param vx
 	 */
-	public void setAcceleration(double acceleration){
-		this.acceleration = acceleration;
+	public void setVx(double vx)
+	{
+		this.vx = vx;
+	}
+	
+	/**
+	 * Setzt die Geschwindigkeit in Y-Richtung
+	 * @param vy
+	 */
+	public void setVy(double vy)
+	{
+		this.vy = vy;
 	}
 	
 	/**
@@ -73,11 +114,21 @@ public class Missile {
 	}
 	
 	/**
-	 * Gibt Beschleunigung zurück
-	 * @return acceleration
+	 * Gibt Geschwindigkeit in X-Richtung zurück
+	 * @return vx
 	 */
-	public double getAcceleration(){
-		return this.acceleration;
+	public double getVx()
+	{
+		return vx;
+	}
+	
+	/**
+	 * Gibt Geschwindigkeit in Y-Richtung zurück
+	 * @return vy
+	 */
+	public double getVy()
+	{
+		return vy;
 	}
 	
 	/**

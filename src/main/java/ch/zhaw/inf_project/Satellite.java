@@ -26,7 +26,7 @@ public class Satellite {
 		this.vy = 35;
 		this.vz = 0;
 		this.rad = 26;
-		this.mass = 1;
+		this.mass = 500;
 	}
 	
 	/**

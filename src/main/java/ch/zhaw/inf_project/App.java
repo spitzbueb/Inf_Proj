@@ -32,6 +32,7 @@ public class App extends Frame implements Runnable
 	private Earth earth = new Earth();
 	private Orbit orbit = new Orbit();
 	private Satellite satellite = new Satellite();
+	private Missile missile = new Missile(50);
 	Thread animThread;
 	boolean animation = false;
     
@@ -40,7 +41,6 @@ public class App extends Frame implements Runnable
 	 * startet Methode createGUI();
 	 */
 	public App() {
-
 		createGui();
     }
 	
@@ -70,7 +70,7 @@ public class App extends Frame implements Runnable
 		
 		Container contentPane = frame.getContentPane();
 		
-		JPanel circlePanel = new CirclePanel(earth,orbit,satellite);
+		JPanel circlePanel = new CirclePanel(earth,orbit,satellite,missile);
 		contentPane.add(circlePanel);
 		
 		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher()
@@ -156,7 +156,7 @@ public class App extends Frame implements Runnable
 	{
 		while(Thread.currentThread() == animThread)
 		{
-			Animation.moveSatellite(satellite, animThread, orbit, earth);
+			Animation.moveSatellite(satellite, animThread, orbit, earth, missile);
 			frame.repaint();
 		
 			try {

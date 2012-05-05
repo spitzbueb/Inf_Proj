@@ -15,6 +15,7 @@ public class CirclePanel extends JPanel{
 	private Earth earth = new Earth();
 	private Orbit orbit = new Orbit();
 	private Satellite satellite = new Satellite();
+	private Missile missile;
 	
 	/**
 	 * Standard-Konstruktor
@@ -24,10 +25,12 @@ public class CirclePanel extends JPanel{
 	 * @param orbit
 	 * @param satellite
 	 */
-	public CirclePanel(Earth earth,Orbit orbit,Satellite satellite)
+	public CirclePanel(Earth earth,Orbit orbit,Satellite satellite,Missile missile)
 	{
 		this.earth = earth;
 		this.satellite = satellite;
+		this.missile = missile;
+		
 	}
 	
 	/**
@@ -43,6 +46,7 @@ public class CirclePanel extends JPanel{
 		
 		g.setColor(Color.BLACK);
 		g.fillOval((int) satellite.getPosx(),(int) satellite.getPosy(),(int) satellite.getRad(),(int) satellite.getRad());
+		g.fillRect((int)missile.getPosx(), (int)missile.getPosy(),6,10);
 		
 	}
 }
