@@ -50,12 +50,9 @@ public class Calculation {
 		double[] z = new double[yAnfang.length];
 		double[] res = new double[yAnfang.length];
 		double[] u = new double[2];
-		double uBetrag,m,k,massm,vgas;
+		double uBetrag,m,k,mmissile,mnull,mleer,vgas;
 		
 		m = earth.getMass();	// Masse der Erde
-		k = missile.getVerbrennung();
-		vgas = missile.getVgas();
-		massm = missile.getMass() + (missile.getTank()*0.5);
 		
 		for(int i=0;i<yAnfang.length;i++)
 			z[i] = yAnfang[i];
@@ -70,8 +67,8 @@ public class Calculation {
 		res[1] = z[3];
 		
 		//Ableitung von x- und y-Geschwindigkeit wird zur Beschleunigung
-		res[2] = (k*vgas)/(massm-(k*t)) + (-g * m *(u[0]/Math.pow(uBetrag,3)));
-		res[3] = (k*vgas)/(massm-(k*t)) + (-g * m *(u[1]/Math.pow(uBetrag,3)));
+		res[2] = (mmissile/(mnull - mleer)) * vrel -g;
+		res[3] = (mmissile/(mnull - mleer)) * vrel -g;
 		//res[2] = (-g * m * (u[0]/Math.pow(uBetrag, 3)));
 		//res[3] = (-g * m * (u[1]/Math.pow(uBetrag, 3)));
 		
