@@ -36,6 +36,7 @@ public class Animation
 	public static void moveSatellite(Satellite satellite, Thread thread, Orbit orbit, Earth earth,Missile missile) 
 	{
 			Calculation calc = new Calculation();
+			int i = (int)tAnfang;
 			
 			yAnfang[0] = satellite.getPosx();
 			yAnfang[1] = satellite.getPosy();
@@ -45,11 +46,10 @@ public class Animation
 			miAnfang[0] = missile.getPosx();
 			miAnfang[1] = missile.getPosy();
 			miAnfang[2] = missile.getVx();
-			miAnfang[3] = missile.getPosy();
-			
+			miAnfang[3] = missile.getVy();
 			
 			double[] y = calc.euler_sat(tAnfang, tAnfang+0.1, yAnfang, 10000);
-			double[] yMissile = calc.euler_mis(tAnfang, tAnfang+0.1, miAnfang, 10000);
+			double[] yMissile = calc.euler_mis(tAnfang, tAnfang+0.1, miAnfang, 10000, missile);
 			
 			satellite.setPosx(y[0]);
 			satellite.setPosy(y[1]);
@@ -62,9 +62,5 @@ public class Animation
 			missile.setVy(yMissile[3]);
 			
 			tAnfang=tAnfang+0.1;
-			
-			//satellite.setPosx(400 + (((orbit.getRadx()/2) * Math.sin(c * t))));
-			//satellite.setPosy(400 + (((orbit.getRady()/2) * Math.cos(c * t))));
-			//t++;
 	}
 }

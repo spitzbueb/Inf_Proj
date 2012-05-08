@@ -9,6 +9,8 @@ package ch.zhaw.inf_project;
  */
 
 public class Calculation {
+	
+	private double g = 10;
 	/**
 	 * Ableitung des aktuellen Satelliten-Vektors
 	 * @param yAnfang
@@ -20,9 +22,8 @@ public class Calculation {
 		double[] z = new double[yAnfang.length];
 		double[] res = new double[yAnfang.length];
 		double[] u = new double[2];
-		double uBetrag,g,m;
-		
-		g = 10;					// Gravitationskonstante
+		double uBetrag,m;
+	
 		m = earth.getMass();	// Masse der Erde
 		
 		for(int i=0;i<yAnfang.length;i++)
@@ -44,15 +45,17 @@ public class Calculation {
 		return res;
 	}
 //-------------------------------------------------------------------------
-	public double[] diff_mis(double[] yAnfang, Earth earth)
+	public double[] diff_mis(double[] yAnfang,double t, Earth earth, Missile missile)
 	{
 		double[] z = new double[yAnfang.length];
 		double[] res = new double[yAnfang.length];
 		double[] u = new double[2];
-		double uBetrag,g,m;
+		double uBetrag,m,k,massm,vgas;
 		
-		g = 10;					// Gravitationskonstante
 		m = earth.getMass();	// Masse der Erde
+		k = missile.getVerbrennung();
+		vgas = missile.getVgas();
+		massm = missile.getMass() + (missile.getTank()*0.5);
 		
 		for(int i=0;i<yAnfang.length;i++)
 			z[i] = yAnfang[i];
@@ -67,8 +70,10 @@ public class Calculation {
 		res[1] = z[3];
 		
 		//Ableitung von x- und y-Geschwindigkeit wird zur Beschleunigung
-		res[2] = -g * m * (u[0]/Math.pow(uBetrag, 3));
-		res[3] = -g * m * (u[1]/Math.pow(uBetrag, 3));
+		res[2] = (k*vgas)/(massm-(k*t)) + (-g * m *(u[0]/Math.pow(uBetrag,3)));
+		res[3] = (k*vgas)/(massm-(k*t)) + (-g * m *(u[1]/Math.pow(uBetrag,3)));
+		//res[2] = (-g * m * (u[0]/Math.pow(uBetrag, 3)));
+		//res[3] = (-g * m * (u[1]/Math.pow(uBetrag, 3)));
 		
 		return res;
 	}
@@ -101,7 +106,7 @@ public class Calculation {
 		return y;
 	}
 //------------------------------------------------------------------------------
-	public double[] euler_mis(double tAnfang,double tEnde,double[] yAnfang, int n)
+	public double[] euler_mis(double tAnfang,double tEnde,double[] yAnfang, int n,Missile missile)
 	{
 		double h = (tEnde-tAnfang)/n;	//korrektes h für Unterschiede berechnen
 		
@@ -111,7 +116,7 @@ public class Calculation {
 		
 		for(int i=1;i<=n;i++)
 		{
-			k = diff_mis(y,new Earth()); //Ableitung des momentanen Vektors
+			k = diff_mis(y,t,new Earth(),missile); //Ableitung des momentanen Vektors
 			
 			y = addVector(y,multScalarVector(h,k));	//neuer Vektor berechnen
 			t = t+h;

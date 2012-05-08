@@ -13,7 +13,7 @@ public class Missile {
 	private int tank;
 	private double posx,posy,vx,vy;
 	private double destinationCoordinate;
-	private double mass;
+	private double mass,acceleration,ax,ay,verbrennung,vgas;
 	
 	
 	/**
@@ -24,12 +24,49 @@ public class Missile {
 	 */
 	public Missile(int tank){
 		this.tank = tank;
-		this.mass = 50;
+		this.mass = 500;
+		this.verbrennung = 5;
+		this.vgas = 50;
 		this.vx = 0;
 		this.vy = 0;
 		this.posx = 394;
 		this.posy = 295;
+		this.angle = 10;
 	}
+
+	public double getMass()
+	{
+		return mass;
+	}
+	public double getVerbrennung()
+	{
+		return verbrennung;
+	}
+	
+	public double getVgas()
+	{
+		return vgas;
+	}
+	
+	public void setAx()
+	{
+		ax = 0;
+	}
+
+	public void setAy()
+	{
+		ay = 0;
+	}
+	
+	public double getAx()
+	{
+		return ax;
+	}
+	
+	public double getAy()
+	{
+		return ay;
+	}	
 	
 	/**
 	 * Gibt X-Koordinate aus
@@ -153,5 +190,14 @@ public class Missile {
 	 */
 	public int getTank(){
 		return this.tank;
+	}
+	
+	/**
+	 * Setzt die Füllmenge des Tankes neu
+	 * @param x
+	 */
+	public void setTank(int x)
+	{
+		this.tank = x;
 	}
 }
