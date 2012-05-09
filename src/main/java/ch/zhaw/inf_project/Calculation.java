@@ -54,8 +54,8 @@ public class Calculation {
 		
 		m = earth.getMass();	// Masse der Erde
 		mmissile = missile.getMass() + missile.getTank();
-		vrelx = missile.getVx();
-		vrely = missile.getVy();
+		vrelx = 80;
+		vrely = 100;
 		
 		for(int i=0;i<yAnfang.length;i++)
 			z[i] = yAnfang[i];
