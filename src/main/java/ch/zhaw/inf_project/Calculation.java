@@ -50,11 +50,12 @@ public class Calculation {
 		double[] z = new double[yAnfang.length];
 		double[] res = new double[yAnfang.length];
 		double[] u = new double[2];
-		double uBetrag,m,k,mmissile,vrel;
+		double uBetrag,m,k,mmissile,vrelx,vrely;
 		
 		m = earth.getMass();	// Masse der Erde
-		mmissile = (missile.getMass() + missile.getTank())/(missile.getTank()/missile.getVerbrennung());
-		vrel = 10;
+		mmissile = missile.getMass() + missile.getTank();
+		vrelx = missile.getVx();
+		vrely = missile.getVy();
 		
 		for(int i=0;i<yAnfang.length;i++)
 			z[i] = yAnfang[i];
@@ -69,9 +70,13 @@ public class Calculation {
 		res[1] = z[3];
 		
 		//Ableitung von x- und y-Geschwindigkeit wird zur Beschleunigung
-		res[2] = Math.cos((mmissile/(missile.getMass()-(mmissile*t))*vrel));
-		res[3] = Math.sin((mmissile/(missile.getMass()-(mmissile*t))*vrel));
-
+		res[2] = ((missile.getVerbrennung() * vrelx)/mmissile) - ((g * m * u[0])/Math.pow(uBetrag, 3));
+		res[3] = ((missile.getVerbrennung() * vrely)/mmissile) - ((g * m * u[1])/Math.pow(uBetrag, 3));
+		
+		if (missile.getTank()>0)
+			missile.setTank(missile.getTank()-t*missile.getVerbrennung());
+		
+		//System.out.println(missile.getTank());
 		return res;
 	}
 //-------------------------------------------------------------------------
@@ -113,7 +118,7 @@ public class Calculation {
 		
 		for(int i=1;i<=n;i++)
 		{
-			k = diff_mis(y,t,new Earth(),missile); //Ableitung des momentanen Vektors
+			k = diff_mis(y,h,new Earth(),missile); //Ableitung des momentanen Vektors
 			
 			y = addVector(y,multScalarVector(h,k));	//neuer Vektor berechnen
 			t = t+h;

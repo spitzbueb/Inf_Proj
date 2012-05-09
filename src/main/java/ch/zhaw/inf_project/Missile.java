@@ -10,7 +10,7 @@ public class Missile {
 	
 	private double angle;
 	private double velocity;
-	private int tank;
+	private double tank;
 	private double posx,posy,vx,vy;
 	private double destinationCoordinate;
 	private double mass,acceleration,ax,ay,verbrennung,vgas;
@@ -27,8 +27,8 @@ public class Missile {
 		this.mass = 500;
 		this.verbrennung = 5;
 		this.vgas = 50;
-		this.vx = 0;
-		this.vy = 0;
+		this.vx = 10;
+		this.vy = 20;
 		this.posx = 394;
 		this.posy = 295;
 		this.angle = 10;
@@ -188,16 +188,16 @@ public class Missile {
 	 * Gibt Tankinhalt zurück
 	 * @return tank
 	 */
-	public int getTank(){
+	public double getTank(){
 		return this.tank;
 	}
 	
 	/**
 	 * Setzt die Füllmenge des Tankes neu
-	 * @param x
+	 * @param d
 	 */
-	public void setTank(int x)
+	public void setTank(double d)
 	{
-		this.tank = x;
+		this.tank = d;
 	}
 }
