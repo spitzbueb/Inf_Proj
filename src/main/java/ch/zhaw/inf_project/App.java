@@ -32,7 +32,7 @@ public class App extends Frame implements Runnable
 	private Earth earth = new Earth();
 	private Orbit orbit = new Orbit();
 	private Satellite satellite = new Satellite();
-	private Missile missile = new Missile(10);
+	private Missile missile = new Missile(50);
 	Thread animThread;
 	boolean animation = false;
     
