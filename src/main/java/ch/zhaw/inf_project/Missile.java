@@ -27,8 +27,8 @@ public class Missile {
 		this.mass = 500;
 		this.verbrennung = 5;
 		this.vgas = 50;
-		this.vx = 10;
-		this.vy = 20;
+		this.vx = 100;
+		this.vy = 80;
 		this.posx = 394;
 		this.posy = 295;
 		this.angle = 10;
