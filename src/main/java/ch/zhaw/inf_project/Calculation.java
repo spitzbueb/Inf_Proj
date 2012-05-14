@@ -55,7 +55,7 @@ public class Calculation {
 		m = earth.getMass();	// Masse der Erde
 		mmissile = missile.getMass() + missile.getTank();
 		vrelx = 80;
-		vrely = 100;
+		vrely = -50000;
 		
 		for(int i=0;i<yAnfang.length;i++)
 			z[i] = yAnfang[i];
@@ -74,6 +74,7 @@ public class Calculation {
 			res[2] = ((missile.getVerbrennung() * vrelx)/mmissile) - ((g * m * u[0])/Math.pow(uBetrag, 3));
 			res[3] = ((missile.getVerbrennung() * vrely)/mmissile) - ((g * m * u[1])/Math.pow(uBetrag, 3));
 			missile.setTank(missile.getTank()-t*missile.getVerbrennung());
+			System.out.println(missile.getTank() + ", " + vrely);
 		}
 		else {
 			res[2] = - ((g * m * u[0])/Math.pow(uBetrag, 3));

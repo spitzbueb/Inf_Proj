@@ -6,6 +6,8 @@ import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
@@ -32,9 +34,10 @@ public class App extends Frame implements Runnable
 	private Earth earth = new Earth();
 	private Orbit orbit = new Orbit();
 	private Satellite satellite = new Satellite();
-	private Missile missile = new Missile(50);
+	private Missile missile = new Missile(0);
 	Thread animThread;
 	boolean animation = false;
+	JPanel circlePanel;
     
 	/**
 	 * Klassenkonstruktor:
@@ -57,12 +60,28 @@ public class App extends Frame implements Runnable
 		
 		frame.setJMenuBar(bar);
 		JMenu dateiMenu = new JMenu("Datei");
+		JMenu initialMenu = new JMenu("Initialisierung");
+		JMenu animationMenu = new JMenu("Animation");
 		JMenu hilfeMenu = new JMenu("?");
 		bar.add(dateiMenu);
+		bar.add(initialMenu);
+		bar.add(animationMenu);
 		bar.add(hilfeMenu);
 		
 		JMenuItem schliessen = new JMenuItem("Schliessen");
 		dateiMenu.add(schliessen);
+		JMenuItem initialMissile = new JMenuItem("Rakete initialisieren");
+		JMenuItem initialAngle = new JMenuItem("Abschusswinkel initialisieren");
+		initialMenu.add(initialMissile);
+		initialMenu.add(initialAngle);
+		final JMenuItem go = new JMenuItem("Go!");
+		final JMenuItem stopp = new JMenuItem("Stopp!");
+		JMenuItem reset = new JMenuItem("Reset!");
+		animationMenu.add(go);
+		go.setEnabled(false);
+		animationMenu.add(stopp);
+		stopp.setEnabled(false);
+		animationMenu.add(reset);
 		JMenuItem hilfe = new JMenuItem("Hilfe");
 		JMenuItem ueber = new JMenuItem("�ber");
 		hilfeMenu.add(hilfe);
@@ -70,55 +89,58 @@ public class App extends Frame implements Runnable
 		
 		Container contentPane = frame.getContentPane();
 		
-		JPanel circlePanel = new CirclePanel(earth,orbit,satellite,missile);
+		circlePanel = new CirclePanel(earth,orbit,satellite,missile);
 		contentPane.add(circlePanel);
 		
-		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher()
-		{
+		initialMissile.addActionListener(new ActionListener(){
 
 			@Override
-			public boolean dispatchKeyEvent(KeyEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				if(arg0.getID() == KeyEvent.KEY_PRESSED)
-				{
-					handleKeyPress(arg0.getKeyCode());
-					return true;
-				}
-				
-				return false;
+				new initialMissileGUI().createGUI(missile);
+				go.setEnabled(true);
 			}
 			
 		});
 		
+		go.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				start();
+				go.setEnabled(false);
+				stopp.setEnabled(true);
+			}
+
+		});
+		
+		stopp.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				stop();
+				stopp.setEnabled(false);
+			}
+			
+		});
+		
+		reset.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.out.println("Noch keine Methode für Reset!");
+			}
+			
+		});
 		frame.setSize(800,800);
 		frame.setVisible(true);
 		
-	}
-	
-	/**
-	 * Verarbeitet den eingebenen Keycode.
-	 * Wenn die Leertaste gedrückt wird, wird die Animation gestoppt oder gestartet.
-	 * Das ganze durch die Variable "animation".
-	 * 
-	 * @param keyCode
-	 */
-	public void handleKeyPress(int keyCode)
-	{
-		switch(keyCode)
-		{
-		case 32	:
-			if(animation == false)
-			{
-				animation = true;
-				start();
-			}
-			else
-			{
-				animation = false;
-				stop();
-			}
-		break;
-		}
 	}
 	
 	/**
