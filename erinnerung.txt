@@ -1,7 +1,0 @@
-\\vs-mqft-01.fr.royal.canin\Navision
-
-Nur mit rcch\ITFR öffnen
-
-PW: Royal123
-
-Falls Files existieren, kopieren nach \\fileserver\public\EDI\Prod und ins Archiv ausschneiden
