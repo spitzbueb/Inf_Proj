@@ -69,12 +69,13 @@ public class Calculation {
 		res[0] = z[2];
 		res[1] = z[3];
 		
+		
 		//Ableitung von x- und y-Geschwindigkeit wird zur Beschleunigung
 		if (missile.getTank() > 0)	{
-			res[2] = ((missile.getVerbrennung() * vrelx)/mmissile) - ((g * m * u[0])/Math.pow(uBetrag, 3));
-			res[3] = ((missile.getVerbrennung() * vrely)/mmissile) - ((g * m * u[1])/Math.pow(uBetrag, 3));
+			res[2] = ((missile.getVerbrennung() * 300)/mmissile * (0.0001/Math.sqrt((Math.pow(0.0001,2)+(Math.pow(1,2)))))) - ((g * m * u[0])/Math.pow(uBetrag, 3));
+			res[3] = ((missile.getVerbrennung() * 300)/mmissile * (1/Math.sqrt((Math.pow(0.0001,2)+(Math.pow(1,2)))))) - ((g * m * u[1])/Math.pow(uBetrag, 3));
 			missile.setTank(missile.getTank()-t*missile.getVerbrennung());
-			System.out.println(missile.getTank() + ", " + vrely);
+			//System.out.println(missile.getTank() + ", " + vrely);
 		}
 		else {
 			res[2] = - ((g * m * u[0])/Math.pow(uBetrag, 3));
