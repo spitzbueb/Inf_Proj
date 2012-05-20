@@ -138,7 +138,7 @@ public class App extends Frame implements Runnable
 			}
 			
 		});
-		frame.setSize(800,800);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setVisible(true);
 		
 	}
