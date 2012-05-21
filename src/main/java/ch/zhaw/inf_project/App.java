@@ -1,7 +1,9 @@
 package ch.zhaw.inf_project;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.KeyEventDispatcher;
@@ -15,6 +17,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 import ch.zhaw.inf_project.Animation;
 
 
@@ -138,7 +142,7 @@ public class App extends Frame implements Runnable
 			}
 			
 		});
-		frame.setSize(800,800);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setVisible(true);
 		
 	}
