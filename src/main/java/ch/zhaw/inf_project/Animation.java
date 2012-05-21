@@ -61,7 +61,7 @@ public class Animation
 			missile.setVx(yMissile[2]);
 			missile.setVy(yMissile[3]);
 			
-			System.out.println(missile.getTank());
+			//System.out.println(missile.getTank());
 			
 			tAnfang=tAnfang+0.1;
 	}
