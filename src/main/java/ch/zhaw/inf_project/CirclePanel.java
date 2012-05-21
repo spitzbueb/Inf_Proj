@@ -46,7 +46,7 @@ public class CirclePanel extends JPanel{
 		
 		g.setColor(Color.BLACK);
 		g.fillOval((int) satellite.getPosx(),(int) satellite.getPosy(),(int) satellite.getRad(),(int) satellite.getRad());
-		g.fillRect((int)missile.getPosx(), (int)missile.getPosy(),6,10);
+		g.fillRect((int)Math.round(missile.getPosx()), (int)Math.round(missile.getPosy()),6,10);
 		
 	}
 }
