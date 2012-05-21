@@ -11,9 +11,8 @@ public class Missile {
 	private double angle;
 	private double velocity;
 	private double tank;
-	private double posx,posy,vx,vy;
-	private double destinationCoordinate;
-	private double mass,acceleration,ax,ay,verbrennung,vgas;
+	private double posx,posy,vx,vy;;
+	private double mass,ax,ay,verbrennung;
 	
 	
 	/**
@@ -22,16 +21,14 @@ public class Missile {
 	 * 
 	 * @param tank
 	 */
-	public Missile(int tank){
+	public Missile(double tank, double angle){
 		this.tank = tank;
 		this.mass = 500;
 		this.verbrennung = 5;
-		this.vgas = 50;
-		this.vx = 100;
-		this.vy = 80;
+		this.vx = 10*Math.cos(angle);
+		this.vy = 10*Math.sin(angle);
 		this.posx = 394;
 		this.posy = 295;
-		this.angle = 10;
 	}
 
 	public double getMass()
@@ -41,11 +38,6 @@ public class Missile {
 	public double getVerbrennung()
 	{
 		return verbrennung;
-	}
-	
-	public double getVgas()
-	{
-		return vgas;
 	}
 	
 	public void setAx()
@@ -102,15 +94,6 @@ public class Missile {
 	public void setPosy(double y)
 	{
 		this.posy = y;
-	}
-	
-	/**
-	 * Setzt Ziel-Koordinaten
-	 * 
-	 * @param destinationCoordinate
-	 */
-	public void setDestinationCoordinate(double destinationCoordinate){
-		this.destinationCoordinate = destinationCoordinate;
 	}
 	
 	/**

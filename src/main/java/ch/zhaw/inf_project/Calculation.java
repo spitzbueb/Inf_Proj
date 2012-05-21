@@ -50,20 +50,20 @@ public class Calculation {
 		double[] z = new double[yAnfang.length];
 		double[] res = new double[yAnfang.length];
 		double[] u = new double[2];
-		double uBetrag,m,k,mmissile,vrelx,vrely;
+		double uBetrag,vBetrag,m,k,mmissile;
 		
 		m = earth.getMass();	// Masse der Erde
 		mmissile = missile.getMass() + missile.getTank();
-		vrelx = 80;
-		vrely = 60;
-		
 		for(int i=0;i<yAnfang.length;i++)
 			z[i] = yAnfang[i];
 		
 		u[0] = z[0] - earth.getPosx();
 		u[1] = z[1] - earth.getPosy();
 		
-		uBetrag = Math.sqrt(u[0]*u[0] + u[1]*u[1]);		//Distanz zwischen Satellit und Erde
+		uBetrag = Math.sqrt(u[0]*u[0] + u[1]*u[1]);		//Distanz zwischen Rakete und Erde
+		vBetrag = Math.sqrt(missile.getVx()*missile.getVx() + missile.getVy()*missile.getVy());
+		
+		k = 500;											//Leistungskonstante
 		
 		//Ableitung von x- und y-Koordinate wird zur Geschwindigkeit
 		res[0] = z[2];
@@ -72,14 +72,14 @@ public class Calculation {
 		
 		//Ableitung von x- und y-Geschwindigkeit wird zur Beschleunigung
 		if (missile.getTank() > 0)	{
-			res[2] = ((missile.getVerbrennung() * 500)/mmissile * (3/Math.sqrt((Math.pow(3,2)+(Math.pow(4,2)))))) - ((g * m * u[0])/Math.pow(uBetrag, 3));
-			res[3] = ((missile.getVerbrennung() * 500)/mmissile * (4/Math.sqrt((Math.pow(3,2)+(Math.pow(4,2)))))) - ((g * m * u[1])/Math.pow(uBetrag, 3));
+			res[2] = (((missile.getVerbrennung() * k)/mmissile) * (missile.getVx()/vBetrag)) + ((-g * m * u[0])/Math.pow(uBetrag, 3));
+			res[3] = (((missile.getVerbrennung() * k)/mmissile) * (missile.getVy()/vBetrag)) + ((-g * m * u[1])/Math.pow(uBetrag, 3));
 			missile.setTank(missile.getTank()-t*missile.getVerbrennung());
 			//System.out.println(missile.getTank() + ", " + vrely);
 		}
 		else {
-			res[2] = - ((g * m * u[0])/Math.pow(uBetrag, 3));
-			res[3] = - ((g * m * u[1])/Math.pow(uBetrag, 3));
+			res[2] = -g * m * u[0]/Math.pow(uBetrag, 3);
+			res[3] = -g * m * u[1]/Math.pow(uBetrag, 3);
 		}
 		
 		//System.out.println(missile.getTank());

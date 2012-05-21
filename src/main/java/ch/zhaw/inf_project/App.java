@@ -38,7 +38,7 @@ public class App extends Frame implements Runnable
 	private Earth earth = new Earth();
 	private Orbit orbit = new Orbit();
 	private Satellite satellite = new Satellite();
-	private Missile missile = new Missile(0);
+	private Missile missile = new Missile(0,0);
 	Thread animThread;
 	boolean animation = false;
 	JPanel circlePanel;
@@ -75,9 +75,7 @@ public class App extends Frame implements Runnable
 		JMenuItem schliessen = new JMenuItem("Schliessen");
 		dateiMenu.add(schliessen);
 		JMenuItem initialMissile = new JMenuItem("Rakete initialisieren");
-		JMenuItem initialAngle = new JMenuItem("Abschusswinkel initialisieren");
 		initialMenu.add(initialMissile);
-		initialMenu.add(initialAngle);
 		final JMenuItem go = new JMenuItem("Go!");
 		final JMenuItem stopp = new JMenuItem("Stopp!");
 		JMenuItem reset = new JMenuItem("Reset!");
