@@ -36,12 +36,10 @@ public class App extends Frame implements Runnable
 {
 	private JFrame frame;
 	private Earth earth = new Earth();
-	private Orbit orbit = new Orbit();
 	private Satellite satellite = new Satellite();
 	private Missile missile = new Missile(0,0);
-	Thread animThread;
-	boolean animation = false;
-	JPanel circlePanel;
+	private Thread animThread;
+	private JPanel circlePanel;
     
 	/**
 	 * Klassenkonstruktor:
@@ -181,7 +179,7 @@ public class App extends Frame implements Runnable
 	{
 		while(Thread.currentThread() == animThread)
 		{
-			Animation.moveSatellite(satellite, animThread, orbit, earth, missile);
+			Animation.moveSatellite(satellite, animThread, earth, missile);
 			frame.repaint();
 		
 			try {

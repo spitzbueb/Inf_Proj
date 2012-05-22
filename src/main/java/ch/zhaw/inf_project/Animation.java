@@ -12,10 +12,10 @@ package ch.zhaw.inf_project;
 
 public class Animation
 {
-	static double[] yAnfang = new double[4];
-	static double[] miAnfang = new double[4];
-	static double tAnfang = 0;
-	int n = 10;
+	private static double[] yAnfang = new double[4];
+	private static double[] miAnfang = new double[4];
+	private static double tAnfang = 0;
+	private int n = 10;
 		
 	/**
 	 * Methode werden 3 Objekte übergeben, und sie setzt die x und y Koordinaten des Satelliten
@@ -25,7 +25,7 @@ public class Animation
 	 * @param thread
 	 * @param orbit
 	 */
-	public static void moveSatellite(Satellite satellite, Thread thread, Orbit orbit, Earth earth,Missile missile) 
+	public static void moveSatellite(Satellite satellite, Thread thread, Earth earth,Missile missile) 
 	{
 			Calculation calc = new Calculation();
 			
