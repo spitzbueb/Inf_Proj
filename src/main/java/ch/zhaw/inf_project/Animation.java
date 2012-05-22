@@ -16,15 +16,7 @@ public class Animation
 	static double[] miAnfang = new double[4];
 	static double tAnfang = 0;
 	int n = 10;
-	
-	/**
-	 * Standard Konstruktor
-	 */
-	public Animation()
-	{
-
-	}
-	
+		
 	/**
 	 * Methode werden 3 Objekte übergeben, und sie setzt die x und y Koordinaten des Satelliten
 	 * neu. Dadurch bewegt er sich.

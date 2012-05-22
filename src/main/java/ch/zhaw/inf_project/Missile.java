@@ -24,7 +24,7 @@ public class Missile {
 	public Missile(double tank, double angle){
 		this.tank = tank;
 		this.mass = 500;
-		this.verbrennung = 20;
+		this.verbrennung = 8;
 		this.posx = 394;
 		this.posy = 295;
 	}
