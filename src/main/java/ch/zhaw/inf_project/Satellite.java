@@ -19,11 +19,11 @@ public class Satellite {
 	
 	public Satellite(){
 		this.coordinate = 10.1;
-		this.posx = 687;
+		this.posx = 887;
 		this.posy = 387;
 		this.posz = 0;
 		this.vx = 0;
-		this.vy = -35;
+		this.vy = 35;
 		this.vz = 0;
 		this.rad = 26;
 		this.mass = 500;
