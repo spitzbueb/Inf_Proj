@@ -29,8 +29,8 @@ public class Calculation {
 		for(int i=0;i<yAnfang.length;i++)
 			z[i] = yAnfang[i];
 		
-		u[0] = z[0] - (earth.getPosx() + 100);
-		u[1] = z[1] - (earth.getPosy() + 100);
+		u[0] = z[0] - (earth.getPosx() + earth.getRad()/2);
+		u[1] = z[1] - (earth.getPosy() + earth.getRad()/2);
 		
 		uBetrag = Math.sqrt(u[0]*u[0] + u[1]*u[1]);		//Distanz zwischen Satellit und Erde
 		
@@ -57,13 +57,13 @@ public class Calculation {
 		for(int i=0;i<yAnfang.length;i++)
 			z[i] = yAnfang[i];
 		
-		u[0] = z[0] - (earth.getPosx()+100);
-		u[1] = z[1] - (earth.getPosy()+100);
+		u[0] = z[0] - (earth.getPosx() + earth.getRad()/2);
+		u[1] = z[1] - (earth.getPosy() + earth.getRad()/2);
 		
 		uBetrag = Math.sqrt(u[0]*u[0] + u[1]*u[1]);		//Distanz zwischen Rakete und Erde
 		vBetrag = Math.sqrt(z[2]*z[2] + z[3]*z[3]);
 		
-		k = 500;											//Leistungskonstante
+		k = 400;											//Leistungskonstante
 		
 		//Ableitung von x- und y-Koordinate wird zur Geschwindigkeit
 		res[0] = z[2];
