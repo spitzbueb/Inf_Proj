@@ -63,7 +63,7 @@ public class Calculation {
 		uBetrag = Math.sqrt(u[0]*u[0] + u[1]*u[1]);		//Distanz zwischen Rakete und Erde
 		vBetrag = Math.sqrt((missile.getVx()*missile.getVx()) + (missile.getVy()*missile.getVy()));
 		
-		k = 50000;											//Leistungskonstante
+		k = 2500;											//Leistungskonstante
 		
 		//Ableitung von x- und y-Koordinate wird zur Geschwindigkeit
 		res[0] = z[2];

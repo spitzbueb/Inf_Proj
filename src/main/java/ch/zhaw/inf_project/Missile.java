@@ -129,8 +129,8 @@ public class Missile {
 	 */
 	public void setAngle(double angle){
 		this.angle = angle;
-		this.vx = Math.cos(angle);
-		this.vy = Math.sin(angle);
+		this.vx = 0.1*Math.cos(angle);
+		this.vy = 0.1*Math.sin(angle);
 	}
 	
 	/**
