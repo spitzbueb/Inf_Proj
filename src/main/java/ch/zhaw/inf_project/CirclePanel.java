@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 
 public class CirclePanel extends JPanel{
 	private Earth earth = new Earth();
-	private Orbit orbit = new Orbit();
 	private Satellite satellite = new Satellite();
 	private Missile missile;
 	
@@ -25,7 +24,7 @@ public class CirclePanel extends JPanel{
 	 * @param orbit
 	 * @param satellite
 	 */
-	public CirclePanel(Earth earth,Orbit orbit,Satellite satellite,Missile missile)
+	public CirclePanel(Earth earth,Satellite satellite,Missile missile)
 	{
 		this.earth = earth;
 		this.satellite = satellite;

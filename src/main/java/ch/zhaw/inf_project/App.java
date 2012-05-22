@@ -91,7 +91,7 @@ public class App extends Frame implements Runnable
 		
 		Container contentPane = frame.getContentPane();
 		
-		circlePanel = new CirclePanel(earth,orbit,satellite,missile);
+		circlePanel = new CirclePanel(earth,satellite,missile);
 		contentPane.add(circlePanel);
 		
 		initialMissile.addActionListener(new ActionListener(){

@@ -28,7 +28,6 @@ public class Animation
 	public static void moveSatellite(Satellite satellite, Thread thread, Orbit orbit, Earth earth,Missile missile) 
 	{
 			Calculation calc = new Calculation();
-			int i = (int)tAnfang;
 			
 			yAnfang[0] = satellite.getPosx();
 			yAnfang[1] = satellite.getPosy();
