@@ -9,10 +9,9 @@ package ch.zhaw.inf_project;
 public class Missile {
 	
 	private double angle;
-	private double velocity;
 	private double tank;
 	private double posx,posy,vx,vy;;
-	private double mass,ax,ay,verbrennung;
+	private double mass,verbrennung;
 	
 	
 	/**
@@ -37,26 +36,6 @@ public class Missile {
 	{
 		return verbrennung;
 	}
-	
-	public void setAx()
-	{
-		ax = 0;
-	}
-
-	public void setAy()
-	{
-		ay = 0;
-	}
-	
-	public double getAx()
-	{
-		return ax;
-	}
-	
-	public double getAy()
-	{
-		return ay;
-	}	
 	
 	/**
 	 * Gibt X-Koordinate aus
@@ -111,17 +90,7 @@ public class Missile {
 	{
 		this.vy = vy;
 	}
-	
-	/**
-	 *  Setzt ???
-	 * 
-	 * @param velocity
-	 */
-	public void setVelocity(double velocity){
-		this.velocity = velocity;
-	}
-	
-	
+		
 	/**
 	 * Setzt Abschusswinkel
 	 * 
@@ -151,14 +120,6 @@ public class Missile {
 	public double getVy()
 	{
 		return vy;
-	}
-	
-	/**
-	 * Gibt ??? zurück
-	 * @return velocity
-	 */
-	public double getVelocity(){
-		return this.velocity;
 	}
 	
 	/**

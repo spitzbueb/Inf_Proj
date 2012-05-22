@@ -9,7 +9,6 @@ package ch.zhaw.inf_project;
 
 public class Satellite {
 	
-	private double coordinate;
 	private double posx,posy,posz,rad,mass,vx,vy,vz;
 	
 	/**
@@ -18,7 +17,6 @@ public class Satellite {
 	 */
 	
 	public Satellite(){
-		this.coordinate = 10.1;
 		this.posx = 887;
 		this.posy = 387;
 		this.posz = 0;
@@ -142,14 +140,5 @@ public class Satellite {
 	 */
 	public void setRad(double rad) {
 		this.rad = rad;
-	}
-
-
-	/**
-	 * Gibt Koordinaten zurück
-	 * @return coordinate
-	 */
-	public double getCoordinate(){
-		return this.coordinate;
 	}
 }

@@ -7,10 +7,21 @@ package ch.zhaw.inf_project;
  *
  */
 public class Earth {
-	
-	private double gravitation;
-	private double coordinate;
+
 	private int posx,posy,rad,mass;
+	private String color;
+	
+	/**
+	 * Standard-Konstruktor
+	 * Setzt graviation, coordinate und radius
+	 */
+	public Earth(){
+		this.posx=300;
+		this.posy=300;
+		this.rad=200;
+		this.mass = 100000;
+		this.color = "green";
+	}
 	
 	/**
 	 * Gibt Masse der Erde zurück
@@ -27,8 +38,6 @@ public class Earth {
 	public void setMass(int mass) {
 		this.mass = mass;
 	}
-
-	private String color = "green";
 	
 	/**
 	 * Gibt X-Koordinate wieder
@@ -93,34 +102,4 @@ public class Earth {
 	public void setColor(String color) {
 		this.color = color;
 	}
-
-	/**
-	 * Standard-Konstruktor
-	 * Setzt graviation, coordinate und radius
-	 */
-	public Earth(){
-		this.gravitation = 9.81;
-		this.coordinate = 0;
-		this.posx=300;
-		this.posy=300;
-		this.rad=200;
-		this.mass = 100000;
-	}
-	
-	/**
-	 * Gibt Koordinate zurück
-	 * @return coordinate
-	 */
-	public double getCoordinate(){
-		return coordinate;
-	}
-	
-	/**
-	 * Gibt Gravitation zurück
-	 * @return gravitation
-	 */
-	public double getGravitation(){
-		return gravitation;
-	}
-	
 }

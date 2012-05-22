@@ -8,14 +8,9 @@ import java.awt.event.ActionListener;
 
 public class initialMissileGUI {
 	
-	double tank;
-	JTextField tankfuellung, abschusswinkel;
-	JFrame frame;
-	
-	public void initialMissileGUI()
-	{
-		
-	}
+	private JTextField tankfuellung, abschusswinkel;
+	private JFrame frame;
+
 	
 	public void createGUI(final Missile missile)
 	{
