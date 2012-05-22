@@ -61,24 +61,24 @@ public class Calculation {
 		u[1] = z[1] - earth.getPosy();
 		
 		uBetrag = Math.sqrt(u[0]*u[0] + u[1]*u[1]);		//Distanz zwischen Rakete und Erde
-		vBetrag = Math.sqrt((missile.getVx()*missile.getVx()) + (missile.getVy()*missile.getVy()));
+		vBetrag = Math.sqrt(z[2]*z[2] + z[3]*z[3]);
 		
-		k = 2500;											//Leistungskonstante
+		k = 475;											//Leistungskonstante
 		
 		//Ableitung von x- und y-Koordinate wird zur Geschwindigkeit
 		res[0] = z[2];
 		res[1] = z[3];
 		
-		
+		//System.out.println(missile.getVx() + ", " + missile.getVy());
 		//Ableitung von x- und y-Geschwindigkeit wird zur Beschleunigung
-		if (missile.getTank() > 0)	{
-			res[2] = -g*m*(u[0]/Math.pow(uBetrag, 3)) + (((k*missile.getVerbrennung())/mmissile)*(missile.getVx()/vBetrag));
-			res[3] = -g*m*(u[1]/Math.pow(uBetrag, 3)) + (((k*missile.getVerbrennung())/mmissile)*(missile.getVy()/vBetrag));
-			missile.setTank(missile.getTank()-t*missile.getVerbrennung());
+		if (missile.getTank() > 0.0)	{
+			res[2] = -g*m*(u[0]/Math.pow(uBetrag, 3)) + (((k*missile.getVerbrennung())/mmissile)*(z[2]/vBetrag));
+			res[3] = -g*m*(u[1]/Math.pow(uBetrag, 3)) + (((k*missile.getVerbrennung())/mmissile)*(z[3]/vBetrag));
+			missile.setTank(missile.getTank()-(t*missile.getVerbrennung()));
 		}
 		else {
-			res[2] = -g * m * (u[0]/Math.pow(uBetrag, 3));
-			res[3] = -g * m * (u[1]/Math.pow(uBetrag, 3));
+			res[2] = -g*m*(u[0]/Math.pow(uBetrag, 3));
+			res[3] = -g*m*(u[1]/Math.pow(uBetrag, 3));
 		}
 		
 		return res;
