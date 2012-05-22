@@ -101,7 +101,7 @@ public class App extends Frame implements Runnable
 				// TODO Auto-generated method stub
 				new initialMissileGUI().createGUI(missile);
 				go.setEnabled(true);
-				System.out.println(missile.getVx() + ", " + missile.getVy());
+				//System.out.println(missile.getAngle());
 			}
 			
 		});
@@ -185,7 +185,7 @@ public class App extends Frame implements Runnable
 			frame.repaint();
 		
 			try {
-				Thread.currentThread().sleep(100);
+				Thread.currentThread().sleep(10);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -24,9 +24,7 @@ public class Missile {
 	public Missile(double tank, double angle){
 		this.tank = tank;
 		this.mass = 500;
-		this.verbrennung = 5;
-		this.vx = Math.cos(Math.toRadians(angle));
-		this.vy = Math.sin(Math.toRadians(angle));
+		this.verbrennung = 20;
 		this.posx = 394;
 		this.posy = 295;
 	}
@@ -131,6 +129,8 @@ public class Missile {
 	 */
 	public void setAngle(double angle){
 		this.angle = angle;
+		this.vx = Math.cos(angle);
+		this.vy = Math.sin(angle);
 	}
 	
 	/**

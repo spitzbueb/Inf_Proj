@@ -42,8 +42,11 @@ public class initialMissileGUI {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				missile.setTank(new Double(tankfuellung.getText()).doubleValue());
-				missile.setAngle(new Double(abschusswinkel.getText()).doubleValue());
+				double t = Double.parseDouble(tankfuellung.getText());
+				double a = Double.parseDouble(abschusswinkel.getText());
+				
+				missile.setTank(t);
+				missile.setAngle(a);
 				frame.dispose();
 				
 			}
