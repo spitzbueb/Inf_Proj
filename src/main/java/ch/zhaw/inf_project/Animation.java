@@ -25,8 +25,7 @@ public class Animation
 	 * @param thread
 	 * @param orbit
 	 */
-	public static void moveSatellite(Satellite satellite, Thread thread, Earth earth,Missile missile) 
-	{
+	public static void moveSatellite(Satellite satellite, Thread thread, Earth earth,Missile missile) {
 			Calculation calc = new Calculation();
 			
 			yAnfang[0] = satellite.getPosx();
@@ -51,8 +50,6 @@ public class Animation
 			missile.setPosy(yMissile[1]);
 			missile.setVx(yMissile[2]);
 			missile.setVy(yMissile[3]);
-			
-			//System.out.println(missile.getTank());
 			
 			tAnfang=tAnfang+0.1;
 	}

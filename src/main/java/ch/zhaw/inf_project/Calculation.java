@@ -17,8 +17,7 @@ public class Calculation {
 	 * @param earth
 	 * @return res
 	 */
-	public double[] diff_sat(double[] yAnfang, Earth earth)
-	{
+	public double[] diff_sat(double[] yAnfang, Earth earth){
 		double[] z = new double[yAnfang.length];
 		double[] res = new double[yAnfang.length];
 		double[] u = new double[2];
@@ -45,8 +44,7 @@ public class Calculation {
 		return res;
 	}
 //-------------------------------------------------------------------------
-	public double[] diff_mis(double[] yAnfang,double t, Earth earth, Missile missile)
-	{
+	public double[] diff_mis(double[] yAnfang,double t, Earth earth, Missile missile){
 		double[] z = new double[yAnfang.length];
 		double[] res = new double[yAnfang.length];
 		double[] u = new double[2];
@@ -93,16 +91,14 @@ public class Calculation {
 	 * @param n
 	 * @return
 	 */
-	public double[] euler_sat(double tAnfang,double tEnde,double[] yAnfang, int n)
-	{
+	public double[] euler_sat(double tAnfang,double tEnde,double[] yAnfang, int n){
 		double h = (tEnde-tAnfang)/n;	//korrektes h für Unterschiede berechnen
 		
 		double[] y = yAnfang;
 		double[] k;
 		double t = tAnfang;
 		
-		for(int i=1;i<=n;i++)
-		{
+		for(int i=1;i<=n;i++){
 			k = diff_sat(y,new Earth()); //Ableitung des momentanen Vektors
 			
 			y = addVector(y,multScalarVector(h,k));	//neuer Vektor berechnen
@@ -112,16 +108,14 @@ public class Calculation {
 		return y;
 	}
 //------------------------------------------------------------------------------
-	public double[] euler_mis(double tAnfang,double tEnde,double[] yAnfang, int n,Missile missile)
-	{
+	public double[] euler_mis(double tAnfang,double tEnde,double[] yAnfang, int n,Missile missile){
 		double h = (tEnde-tAnfang)/n;	//korrektes h für Unterschiede berechnen
 		
 		double[] y = yAnfang;
 		double[] k;
 		double t = tAnfang;
 		
-		for(int i=1;i<=n;i++)
-		{
+		for(int i=1;i<=n;i++){
 			k = diff_mis(y,h,new Earth(),missile); //Ableitung des momentanen Vektors
 			
 			y = addVector(y,multScalarVector(h,k));	//neuer Vektor berechnen
@@ -131,20 +125,16 @@ public class Calculation {
 		return y;
 	}
 //------------------------------------------------------------------------------
-	public double[] multScalarVector(double h, double[] k)
-	{
-		for(int i = 0; i<k.length;i++)
-		{
+	public double[] multScalarVector(double h, double[] k){
+		for(int i = 0; i<k.length;i++){
 			k[i]=h*k[i];
 		}
 		
 		return k;
 	}
 //------------------------------------------------------------------------
-	public double[] addVector(double[] y, double[] k)
-	{
-		for(int i = 0;i<y.length;i++)
-		{
+	public double[] addVector(double[] y, double[] k){
+		for(int i = 0;i<y.length;i++){
 			y[i] = y[i] + k[i];
 		}
 		return y;

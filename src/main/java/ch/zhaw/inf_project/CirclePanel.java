@@ -24,20 +24,17 @@ public class CirclePanel extends JPanel{
 	 * @param orbit
 	 * @param satellite
 	 */
-	public CirclePanel(Earth earth,Satellite satellite,Missile missile)
-	{
+	public CirclePanel(Earth earth,Satellite satellite,Missile missile){
 		this.earth = earth;
 		this.satellite = satellite;
 		this.missile = missile;
-		
 	}
 	
 	/**
 	 * Methode zeichnet die drei Kreise.
 	 */
 	@Override
-	protected void paintComponent(Graphics g)
-	{
+	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
 		
 		g.setColor(Color.GREEN);
@@ -46,6 +43,5 @@ public class CirclePanel extends JPanel{
 		g.setColor(Color.BLACK);
 		g.fillOval((int) satellite.getPosx(),(int) satellite.getPosy(),(int) satellite.getRad(),(int) satellite.getRad());
 		g.fillRect((int)Math.round(missile.getPosx()), (int)Math.round(missile.getPosy()),6,10);
-		
 	}
 }

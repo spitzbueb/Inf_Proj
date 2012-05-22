@@ -99,7 +99,6 @@ public class App extends Frame implements Runnable
 				// TODO Auto-generated method stub
 				new initialMissileGUI().createGUI(missile);
 				go.setEnabled(true);
-				//System.out.println(missile.getAngle());
 			}
 			
 		});
