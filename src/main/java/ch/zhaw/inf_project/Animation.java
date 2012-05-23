@@ -53,4 +53,21 @@ public class Animation
 			
 			tAnfang=tAnfang+0.1;
 	}
+	
+	public static void moveMissile2(Missile missile, Earth earth)
+	{
+		Calculation calc = new Calculation();
+		
+		yAnfang[0] = missile.getPosx();
+		yAnfang[1] = missile.getPosy();
+		yAnfang[2] = missile.getVx();
+		yAnfang[3] = missile.getVy();
+		
+		double[] yMissile2 = calc.euler_mis(tAnfang, tAnfang+0.1, yAnfang, 10000, missile);
+		
+		missile.setPosx(yAnfang[0]);
+		missile.setPosy(yAnfang[1]);
+		missile.setVx(yAnfang[2]);
+		missile.setVy(yAnfang[3]);
+	}
 }
