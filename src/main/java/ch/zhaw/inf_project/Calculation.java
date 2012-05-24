@@ -128,6 +128,17 @@ public class Calculation {
 		
 		return y;
 	}
+	
+	public void getTimeforRoute(double h, Missile missile){
+		double t;
+		double tank = missile.getTank();
+		t = h;
+		while (tank > 0){
+			tank = tank - (t*missile.getVerbrennung());
+			t = t + 0.00001;
+		}
+		missile.setAccelerationTime(t);
+	}
 //------------------------------------------------------------------------------
 	public double[] multScalarVector(double h, double[] k){
 		for(int i = 0; i<k.length;i++){
@@ -142,16 +153,5 @@ public class Calculation {
 			y[i] = y[i] + k[i];
 		}
 		return y;
-	}
-	
-	public void timeforRoute(double h, Missile missile){
-		double t;
-		double tank = missile.getTank();
-		t = h;
-		while (tank > 0.0){
-			tank = tank -(t*missile.getVerbrennung());
-			t = t + 0.00001;
-		}
-		missile.setAccelerationTime(t);
 	}
 }

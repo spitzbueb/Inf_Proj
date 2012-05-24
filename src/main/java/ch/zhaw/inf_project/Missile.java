@@ -13,7 +13,7 @@ public class Missile {
 	private double posx,posy,vx,vy;;
 	private double mass,verbrennung;
 	private boolean state;
-	private double accelerationTime;
+	private double acceleration;
 	
 	
 	/**
@@ -156,11 +156,11 @@ public class Missile {
 		this.tank = d;
 	}
 	
-	public void setAccelerationTime(double t){
-		this.accelerationTime = t;
+	public double getAccelarationTime(){
+		return acceleration;
 	}
 	
-	public double getAccelerationTime(){
-		return accelerationTime;
+	public void setAccelerationTime(double t){
+		this.acceleration = t;
 	}
 }
