@@ -12,6 +12,7 @@ public class Missile {
 	private double tank;
 	private double posx,posy,vx,vy;;
 	private double mass,verbrennung;
+	private boolean state;
 	
 	
 	/**
@@ -26,6 +27,7 @@ public class Missile {
 		this.verbrennung = 8;
 		this.posx = 394;
 		this.posy = 295;
+		this.state = false;
 	}
 
 	public double getMass()
@@ -35,6 +37,10 @@ public class Missile {
 	public double getVerbrennung()
 	{
 		return verbrennung;
+	}
+	
+	public boolean getState(){
+		return state;
 	}
 	
 	/**
@@ -53,6 +59,10 @@ public class Missile {
 	public double getPosy()
 	{
 		return posy;
+	}
+	
+	public void setStateTrue(){
+		state = true;
 	}
 	
 	/**

@@ -192,7 +192,7 @@ public class App extends Frame implements Runnable
 				Animation.moveSatellite(satellite, animThread, earth, missile);
 			}
 			
-			if(ready2 == true)
+			if(ready2 == true && missile2.getState())
 			{
 				Animation.moveMissile2(missile2, earth);
 			}
