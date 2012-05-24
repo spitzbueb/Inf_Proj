@@ -137,7 +137,7 @@ public class Calculation {
 			tank = tank - (t*missile.getVerbrennung());
 			t = t + 0.00001;
 		}
-		missile.setAccelerationTime(t);
+		missile.setAccelerationTime(t/0.00001);
 	}
 //------------------------------------------------------------------------------
 	public double[] multScalarVector(double h, double[] k){
