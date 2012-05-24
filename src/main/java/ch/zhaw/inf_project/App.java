@@ -175,7 +175,7 @@ public class App extends Frame implements Runnable
 	{
 		while(Thread.currentThread() == animThread)
 		{
-			Animation.moveSatellite(satellite, animThread, earth, missile);
+			Animation.moveSatellite(satellite, animThread, earth, missile, missile2);
 			
 			
 			if(ready == true && missile2.getState())

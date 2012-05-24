@@ -15,7 +15,7 @@ public class Animation
 	private static double[] yAnfang = new double[4];
 	private static double[] miAnfang = new double[4];
 	private static double tAnfang = 0;
-	private int n = 10;
+	private static int n = 10000;
 		
 	/**
 	 * Methode werden 3 Objekte übergeben, und sie setzt die x und y Koordinaten des Satelliten
@@ -25,9 +25,11 @@ public class Animation
 	 * @param thread
 	 * @param orbit
 	 */
-	public static void moveSatellite(Satellite satellite, Thread thread, Earth earth,Missile missile) {
+	public static void moveSatellite(Satellite satellite, Thread thread, Earth earth,Missile missile, Missile missile2) {
 			Calculation calc = new Calculation();
-			
+			if (tAnfang == 0){
+				calc.timeforRoute(tAnfang, missile2);
+			}
 			yAnfang[0] = satellite.getPosx();
 			yAnfang[1] = satellite.getPosy();
 			yAnfang[2] = satellite.getVx();
@@ -38,8 +40,8 @@ public class Animation
 			miAnfang[2] = missile.getVx();
 			miAnfang[3] = missile.getVy();
 			
-			double[] y = calc.euler_sat(tAnfang, tAnfang+0.1, yAnfang, 10000);
-			double[] yMissile = calc.euler_mis(tAnfang, tAnfang+0.1, miAnfang, 10000, missile);
+			double[] y = calc.euler_sat(tAnfang, tAnfang+0.1, yAnfang, n);
+			double[] yMissile = calc.euler_mis(tAnfang, tAnfang+0.1, miAnfang, n, missile);
 			
 			satellite.setPosx(y[0]);
 			satellite.setPosy(y[1]);
@@ -63,7 +65,7 @@ public class Animation
 		yAnfang[2] = missile.getVx();
 		yAnfang[3] = missile.getVy();
 		
-		double[] yMissile2 = calc.euler_mis(tAnfang, tAnfang+0.1, yAnfang, 10000, missile);
+		double[] yMissile2 = calc.euler_mis(tAnfang, tAnfang+0.1, yAnfang, n, missile);
 		
 		missile.setPosx(yAnfang[0]);
 		missile.setPosy(yAnfang[1]);

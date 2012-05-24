@@ -13,6 +13,7 @@ public class Missile {
 	private double posx,posy,vx,vy;;
 	private double mass,verbrennung;
 	private boolean state;
+	private double accelerationTime;
 	
 	
 	/**
@@ -110,8 +111,6 @@ public class Missile {
 		this.angle = angle;
 		this.vx = -100 * Math.cos(Math.toRadians(180+angle));
 		this.vy = 100 * Math.sin(Math.toRadians(180+angle));
-		
-		System.out.println(vx + ", " + vy);
 	}
 	
 	/**
@@ -155,5 +154,13 @@ public class Missile {
 	public void setTank(double d)
 	{
 		this.tank = d;
+	}
+	
+	public void setAccelerationTime(double t){
+		this.accelerationTime = t;
+	}
+	
+	public double getAccelerationTime(){
+		return accelerationTime;
 	}
 }

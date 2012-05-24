@@ -143,4 +143,15 @@ public class Calculation {
 		}
 		return y;
 	}
+	
+	public void timeforRoute(double h, Missile missile){
+		double t;
+		double tank = missile.getTank();
+		t = h;
+		while (tank > 0.0){
+			tank = tank -(t*missile.getVerbrennung());
+			t = t + 0.00001;
+		}
+		missile.setAccelerationTime(t);
+	}
 }
