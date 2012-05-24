@@ -2,7 +2,7 @@ package ch.zhaw.inf_project;
 
 
 /**
- * Die Klasse Animation Ã¼bernimmt das setzen der neuen 
+ * Die Klasse Animation übernimmt das setzen der neuen 
  * Positionen des Satelliten.
  * 
  * @author Schalcher Philipp
