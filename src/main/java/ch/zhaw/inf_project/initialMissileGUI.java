@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class initialMissileGUI {
 	
-	private JTextField tankfuellung, abschusswinkel;
+	private JTextField tankfuellung;
 	private JFrame frame;
 
 	
@@ -22,13 +22,9 @@ public class initialMissileGUI {
 		JPanel panel = new JPanel();
 		JLabel label = new JLabel("Tankfuellung angeben:");
 		tankfuellung = new JTextField(10);
-		JLabel winkel = new JLabel("Abschusswinkel angeben: ");
-		abschusswinkel = new JTextField(10);
 		JButton accept = new JButton("Initialisiere!");
 		panel.add(label);
 		panel.add(tankfuellung);
-		panel.add(winkel);
-		panel.add(abschusswinkel);
 		panel.add(accept);
 		
 		accept.addActionListener(new ActionListener()
@@ -38,10 +34,8 @@ public class initialMissileGUI {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				double t = Double.parseDouble(tankfuellung.getText());
-				double a = Double.parseDouble(abschusswinkel.getText());
 				
 				missile.setTank(t);
-				missile.setAngle(a);
 				frame.dispose();
 				
 			}

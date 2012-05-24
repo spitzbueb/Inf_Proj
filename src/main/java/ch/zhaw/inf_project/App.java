@@ -33,7 +33,7 @@ public class App extends Frame implements Runnable
 	private Missile missile2 = new Missile(0,0);
 	private Thread animThread;
 	private JPanel circlePanel;
-	private boolean ready1,ready2 = false;
+	private boolean ready = false;
     
 	/**
 	 * Klassenkonstruktor:
@@ -66,10 +66,8 @@ public class App extends Frame implements Runnable
 		
 		JMenuItem schliessen = new JMenuItem("Schliessen");
 		dateiMenu.add(schliessen);
-		JMenuItem initialMissile = new JMenuItem("Rakete 1 initialisieren");
+		JMenuItem initialMissile = new JMenuItem("Rakete initialisieren");
 		initialMenu.add(initialMissile);
-		JMenuItem initialMissile2 = new JMenuItem("Rakete 2 initialisieren");
-		initialMenu.add(initialMissile2);
 		final JMenuItem go = new JMenuItem("Go!");
 		final JMenuItem stopp = new JMenuItem("Stopp!");
 		JMenuItem reset = new JMenuItem("Reset!");
@@ -87,27 +85,17 @@ public class App extends Frame implements Runnable
 		
 		circlePanel = new CirclePanel(earth,satellite,missile,missile2);
 		contentPane.add(circlePanel);
+		missile.setAngle(45);
+		missile.setTank(45);
 		
 		initialMissile.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				new initialMissileGUI().createGUI(missile);
-				go.setEnabled(true);
-				ready1 = true;
-			}
-			
-		});
-		
-		initialMissile2.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
 				new initialMissileGUI().createGUI(missile2);
 				go.setEnabled(true);
-				ready2 = true;
+				ready = true;
 			}
 			
 		});
@@ -187,12 +175,10 @@ public class App extends Frame implements Runnable
 	{
 		while(Thread.currentThread() == animThread)
 		{
-			if(ready1 == true)
-			{
-				Animation.moveSatellite(satellite, animThread, earth, missile);
-			}
+			Animation.moveSatellite(satellite, animThread, earth, missile);
 			
-			if(ready2 == true && missile2.getState())
+			
+			if(ready == true && missile2.getState())
 			{
 				Animation.moveMissile2(missile2, earth);
 			}
