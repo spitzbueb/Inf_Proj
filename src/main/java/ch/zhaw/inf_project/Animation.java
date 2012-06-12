@@ -16,6 +16,8 @@ public class Animation
 	private static double[] miAnfang = new double[4];
 	private static double tAnfang = 0;
 	private int n = 10;
+	private static double[] x = new double[4];
+	private static double[] z = new double[4];
 		
 	/**
 	 * Methode werden 3 Objekte übergeben, und sie setzt die x und y Koordinaten des Satelliten
@@ -29,7 +31,6 @@ public class Animation
 			Calculation calc = new Calculation();
 			if (tAnfang == 0){
 				calc.getTimeforRoute(tAnfang, missile2);
-				System.out.println(missile2.getAccelarationTime());
 			}
 			yAnfang[0] = satellite.getPosx();
 			yAnfang[1] = satellite.getPosy();
@@ -42,7 +43,7 @@ public class Animation
 			miAnfang[3] = missile.getVy();
 			
 			double[] y = calc.euler_sat(tAnfang, tAnfang+0.1, yAnfang, 10000);
-			double[] yMissile = calc.euler_mis(tAnfang, tAnfang+0.1, miAnfang, 10000, missile);
+			double[] yMissile = calc.euler_mis(tAnfang, tAnfang+0.1, miAnfang, 10000, missile);			
 			
 			satellite.setPosx(y[0]);
 			satellite.setPosy(y[1]);
@@ -53,6 +54,7 @@ public class Animation
 			missile.setPosy(yMissile[1]);
 			missile.setVx(yMissile[2]);
 			missile.setVy(yMissile[3]);
+
 			
 			tAnfang=tAnfang+0.1;
 			if (tAnfang > 16.5){

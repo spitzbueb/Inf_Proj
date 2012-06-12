@@ -80,7 +80,6 @@ public class Calculation {
 		else {
 			res[2] = -g*m*(u[0]/Math.pow(uBetrag, 3));
 			res[3] = -g*m*(u[1]/Math.pow(uBetrag, 3));
-			//System.out.println(missile.getTank());
 		}
 		
 		return res;
@@ -127,6 +126,20 @@ public class Calculation {
 		}
 		
 		return y;
+	}
+	
+	public double[] searchPos(Missile missile, Missile missile2){
+		double [] z = new double[4];
+		z[0] = missile2.getPosx();
+		z[1] = missile2.getPosy();
+		z[2] = missile2.getVx();
+		z[3] = missile2.getVy();
+		
+		double tank = missile2.getTank();
+		z = euler_mis(0, missile2.getAccelarationTime()*0.00001, z, 10000, missile2);
+		missile2.setTank(tank);
+		
+		return z;
 	}
 	
 	public void getTimeforRoute(double h, Missile missile){

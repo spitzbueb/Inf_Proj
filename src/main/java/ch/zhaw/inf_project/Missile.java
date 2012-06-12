@@ -57,8 +57,7 @@ public class Missile {
 	 * Gibt Y-Koordinate aus
 	 * @return posy
 	 */
-	public double getPosy()
-	{
+	public double getPosy(){
 		return posy;
 	}
 	
