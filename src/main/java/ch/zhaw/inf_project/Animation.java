@@ -15,9 +15,6 @@ public class Animation
 	private static double[] yAnfang = new double[4];
 	private static double[] miAnfang = new double[4];
 	private static double tAnfang = 0;
-	private int n = 10;
-	private static double[] x = new double[4];
-	private static double[] z = new double[4];
 		
 	/**
 	 * Methode werden 3 Objekte übergeben, und sie setzt die x und y Koordinaten des Satelliten
@@ -29,9 +26,7 @@ public class Animation
 	 */
 	public static void moveSatellite(Satellite satellite, Thread thread, Earth earth,Missile missile, Missile missile2) {
 			Calculation calc = new Calculation();
-			if (tAnfang == 0){
-				calc.getTimeforRoute(tAnfang, missile2);
-			}
+
 			yAnfang[0] = satellite.getPosx();
 			yAnfang[1] = satellite.getPosy();
 			yAnfang[2] = satellite.getVx();
@@ -57,7 +52,7 @@ public class Animation
 
 			
 			tAnfang=tAnfang+0.1;
-			if (tAnfang > 16.5){
+			if (tAnfang >= missile2.getStartTime()){
 				missile2.setStateTrue();
 			}
 	}

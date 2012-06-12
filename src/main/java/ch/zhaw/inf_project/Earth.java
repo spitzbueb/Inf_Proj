@@ -78,6 +78,13 @@ public class Earth {
 	public int getRad() {
 		return rad;
 	}
+	
+	public int[] getMiddlePoint(){
+		int[] pos = new int[2];
+		pos[0] = getPosx() + getRad()/2;
+		pos[1] = getPosy() + getRad()/2;
+		return pos;
+	}
 
 	/**
 	 * Setzt den Radius

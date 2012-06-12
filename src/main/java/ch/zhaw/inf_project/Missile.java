@@ -14,6 +14,8 @@ public class Missile {
 	private double mass,verbrennung;
 	private boolean state;
 	private double acceleration;
+	private double initialValuex, initialValuey;
+	private double startTime;
 	
 	
 	/**
@@ -29,6 +31,8 @@ public class Missile {
 		this.posx = 394;
 		this.posy = 295;
 		this.state = false;
+		this.initialValuex = posx;
+		this.initialValuey = posy;
 	}
 
 	public double getMass()
@@ -65,6 +69,9 @@ public class Missile {
 		state = true;
 	}
 	
+	public double getStartTime(){
+		return startTime;
+	}
 	/**
 	 * Setzt X-Koordinate
 	 * @param x
@@ -72,6 +79,14 @@ public class Missile {
 	public void setPosx(double x)
 	{
 		this.posx = x;
+	}
+	
+	public void setBurnRate(double burnRate){
+		this.verbrennung = burnRate;
+	}
+	
+	public void setStartTime(double startTime){
+		this.startTime = startTime;
 	}
 	
 	/**
