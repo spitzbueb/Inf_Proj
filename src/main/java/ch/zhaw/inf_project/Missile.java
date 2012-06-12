@@ -14,7 +14,7 @@ public class Missile {
 	private double mass,verbrennung;
 	private boolean state;
 	private double acceleration;
-	private double initialValuex, initialValuey;
+	private double initialValuex, initialValuey, initialVx, initialVy;
 	private double startTime;
 	
 	
@@ -125,6 +125,8 @@ public class Missile {
 		this.angle = angle;
 		this.vx = -100 * Math.cos(Math.toRadians(180+angle));
 		this.vy = 100 * Math.sin(Math.toRadians(180+angle));
+		this.initialVx = vx;
+		this.initialVy = vy;
 	}
 	
 	/**
@@ -177,4 +179,20 @@ public class Missile {
 	public void setAccelerationTime(double t){
 		this.acceleration = t;
 	}
+	
+	public double getInitalValuex(){
+		return initialValuex;
+	}
+	
+	public double getInitialValuey(){
+		return initialValuey;
+	}
+	public double getInitialVx(){
+		return initialVx;
+	}
+	
+	public double getInitialVy(){
+		return initialVy;
+	}
+	
 }

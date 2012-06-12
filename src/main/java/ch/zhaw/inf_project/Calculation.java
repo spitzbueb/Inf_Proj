@@ -4,7 +4,7 @@ package ch.zhaw.inf_project;
  * Klasse übernimmt die Aufgabe des Rechnens. 
  * Berechnet Flugbahn des Satelliten und der Rakete.
  * 
- * @author Piano Gennaro
+ * @author Piano Gennaro, Philipp Schalcher
  *
  */
 
@@ -128,29 +128,64 @@ public class Calculation {
 		return y;
 	}
 	
-	public double[] searchPos(Missile missile, Missile missile2){
-		double [] z = new double[4];
-		z[0] = missile2.getPosx();
-		z[1] = missile2.getPosy();
-		z[2] = missile2.getVx();
-		z[3] = missile2.getVy();
+	public boolean newton(double winkel, double tank, double zeit, double verbrennung, Missile missile1, Missile missile2){
+		double[] m1 = new double[4];
+		double[] m2 = new double[4];
+		double[] parameter = new double[4];
+		double[][] jacobi = new double[4][4];
+		parameter[0] = winkel;
+		parameter[1] = tank;
+		parameter[2] = zeit;
+		parameter[3] = verbrennung;
+		double h = 0.1;
+		m1[0] = missile1.getInitalValuex();
+		m1[1] = missile1.getInitialValuey();
+		m1[2] = missile1.getInitialVx();
+		m1[3] = missile1.getInitialVy();
+		m2[0] = m1[0];
+		m2[1] = m1[1];
+		m2[2] = missile2.getVx();
+		m2[3] = missile2.getVy();
+		Missile missileTest = new Missile(winkel, tank);
+		double endzeit1 = zeit + 30;
+		double endzeit2 = endzeit1 - zeit;
+		double[] y1 = euler_mis(0, endzeit1, m1, 10000, missile1);
+		double[] y2 = euler_mis(zeit, endzeit1, m2, 10000, missile2);
+		final double DELTA = 1E-7;
+	/*	for (int i=0;i<4;i++){
+			System.out.println(y1[i] + " " + y2[i]);
+		}*/
+		if (y1[0] - y2[0] < DELTA && y1[1] - y2[1] < DELTA && y1[2] - y2[2] < DELTA && y1[3] - y2[3] < DELTA){
+			return true;
+		}
+		else {
+			for (int i=0;i<4;i++){
+				//System.out.println(y2[i]);
+				double[] value = parameter;
+				double[] m3 = new double[4];
+				value[i%4] = parameter[i%4] + h;
+				missileTest.setAngle(value[0]);
+				missileTest.setTank(value[1]);
+				missileTest.setStartTime(value[2]);
+				missileTest.setBurnRate(value[3]);
+				m3[0] = m1[0];
+				m3[1] = m1[1];
+				m3[2] = missileTest.getVx();
+				m3[3] = missileTest.getVy();
+				double[]res = euler_mis(value[2], endzeit1, m3, 10000, missileTest);
+				for (int j = 0;j<4;j++){
+					//System.out.println(y2[j] + " " + res[j]);
+					jacobi[i][j] = (res[j] - y2[j])/h;
+									}
+			}
+			return false;
+		}
 		
-		double tank = missile2.getTank();
-		z = euler_mis(0, missile2.getAccelarationTime()*0.00001, z, 10000, missile2);
-		missile2.setTank(tank);
-		
-		return z;
 	}
 	
-	public void getTimeforRoute(double h, Missile missile){
-		double t;
-		double tank = missile.getTank();
-		t = h;
-		while (tank > 0){
-			tank = tank - (t*missile.getVerbrennung());
-			t = t + 0.00001;
-		}
-		missile.setAccelerationTime(t/0.00001);
+	public double[][] gaussSeidel(double[][] jacobi){
+		//Ax = b;
+		return null;
 	}
 //------------------------------------------------------------------------------
 	public double[] multScalarVector(double h, double[] k){
