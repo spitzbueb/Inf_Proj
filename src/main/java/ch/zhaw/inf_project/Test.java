@@ -24,7 +24,7 @@ public class Test {
 		missile2.setStartTime(12);
 		missile2.setBurnRate(7);
 		missile2.setTank(45);
-		boolean test = calc.newton(45, 45, 12, 7, missile1, missile2);
+		boolean test = calc.newton(missile1, missile2);
 		System.out.println(test);
 		
 	}

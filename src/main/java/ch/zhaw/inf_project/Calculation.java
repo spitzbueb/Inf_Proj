@@ -12,37 +12,11 @@ public class Calculation {
 	
 	private double g = 10;
 	/**
-	 * Ableitung des aktuellen Satelliten-Vektors
+	 * Ableitung des aktuellen Raketen-Vektors
 	 * @param yAnfang
 	 * @param earth
 	 * @return res
 	 */
-	/*public double[] diff_sat(double[] yAnfang, Earth earth){
-		double[] z = new double[yAnfang.length];
-		double[] res = new double[yAnfang.length];
-		double[] u = new double[2];
-		double uBetrag,m;
-	
-		m = earth.getMass();	// Masse der Erde
-		
-		for(int i=0;i<yAnfang.length;i++)
-			z[i] = yAnfang[i];
-		
-		u[0] = z[0] - (earth.getPosx() + earth.getRad()/2);
-		u[1] = z[1] - (earth.getPosy() + earth.getRad()/2);
-		
-		uBetrag = Math.sqrt(u[0]*u[0] + u[1]*u[1]);		//Distanz zwischen Satellit und Erde
-		
-		//Ableitung von x- und y-Koordinate wird zur Geschwindigkeit
-		res[0] = z[2];
-		res[1] = z[3];
-		
-		//Ableitung von x- und y-Geschwindigkeit wird zur Beschleunigung
-		res[2] = -g * m * (u[0]/Math.pow(uBetrag, 3));
-		res[3] = -g * m * (u[1]/Math.pow(uBetrag, 3));
-		
-		return res;
-	}*/
 //-------------------------------------------------------------------------
 	public double[] diff_mis(double[] yAnfang,double t, Earth earth, Missile missile){
 		double[] z = new double[yAnfang.length];
@@ -94,23 +68,6 @@ public class Calculation {
 	 * @param n
 	 * @return
 	 */
-	/*public double[] euler_sat(double tAnfang,double tEnde,double[] yAnfang, int n){
-		double h = (tEnde-tAnfang)/n;	//korrektes h für Unterschiede berechnen
-		
-		double[] y = yAnfang;
-		double[] k;
-		double t = tAnfang;
-		
-		for(int i=1;i<=n;i++){
-			k = diff_sat(y,new Earth()); //Ableitung des momentanen Vektors
-			
-			y = addVector(y,multScalarVector(h,k));	//neuer Vektor berechnen
-			t = t+h;
-		}
-		
-		return y;
-	}*/
-//------------------------------------------------------------------------------
 	public double[] euler_mis(double tAnfang,double tEnde,double[] yAnfang, int n,Missile missile){
 		double h = (tEnde-tAnfang)/n;	//korrektes h für Unterschiede berechnen
 		
@@ -128,15 +85,15 @@ public class Calculation {
 		return y;
 	}
 	
-	public boolean newton(double winkel, double tank, double zeit, double verbrennung, Missile missile1, Missile missile2){
+	public boolean newton(Missile missile1, Missile missile2){
 		double[] m1 = new double[4];
 		double[] m2 = new double[4];
 		double[] parameter = new double[4];
 		double[][] jacobi = new double[4][4];
-		parameter[0] = winkel;
-		parameter[1] = tank;
-		parameter[2] = zeit;
-		parameter[3] = verbrennung;
+		parameter[0] = missile2.getAngle();
+		parameter[1] = missile2.getTank();
+		parameter[2] = missile2.getStartTime();
+		parameter[3] = missile2.getVerbrennung();
 		double h = 0.1;
 		m1[0] = missile1.getInitalValuex();
 		m1[1] = missile1.getInitialValuey();
@@ -147,22 +104,20 @@ public class Calculation {
 		m2[2] = missile2.getVx();
 		m2[3] = missile2.getVy();
 	
-		double endzeit1 = zeit + 30;
+		double endzeit1 = parameter[2] + 30;
 		double[] y1 = euler_mis(0, endzeit1, m1, 10000, missile1);
-		double[] y2 = euler_mis(zeit, endzeit1, m2, 10000, missile2);
+		double[] y2 = euler_mis(parameter[2], endzeit1, m2, 10000, missile2);
 		final double DELTA = 1E-7;
-	/*	for (int i=0;i<4;i++){
-			System.out.println(y1[i] + " " + y2[i]);
-		}*/
+	
 		if (y1[0] - y2[0] < DELTA && y1[1] - y2[1] < DELTA && y1[2] - y2[2] < DELTA && y1[3] - y2[3] < DELTA){
 			return true;
 		}
 		else {
 			for (int i=0;i<y2.length;i++){
-				Missile missileTest = new Missile(winkel, tank);
+				Missile missileTest = new Missile(missile2.getAngle(), missile2.getTank());
 				double[] value = parameter.clone();			// Die vier Parameter (Winkel, Tank, Startzeit und Verbrennung werden in eine temp Variable geschrieben
 				double[] m3 = new double[4];
-				value[i%4] = parameter[i%4] + h;
+				value[i] = parameter[i] + h;
 				missileTest.setAngle(value[0]);
 				missileTest.setTank(value[1]);
 				missileTest.setStartTime(value[2]);
@@ -176,7 +131,7 @@ public class Calculation {
 					jacobi[i][j] = (res[j] - y2[j])/h;
 				}
 			}
-			gaussSeidel(jacobi, parameter, missile2);
+			gaussSeidel(jacobi, y2, missile2);
 			return false;
 		}
 		
