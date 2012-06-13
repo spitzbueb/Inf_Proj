@@ -49,7 +49,6 @@ public class Animation
 			missile.setPosy(yMissile[1]);
 			missile.setVx(yMissile[2]);
 			missile.setVy(yMissile[3]);
-
 			
 			tAnfang=tAnfang+0.1;
 			if (tAnfang >= missile2.getStartTime()){
@@ -65,7 +64,9 @@ public class Animation
 		yAnfang[1] = missile.getPosy();
 		yAnfang[2] = missile.getVx();
 		yAnfang[3] = missile.getVy();
-		
+		if (tAnfang > 40){
+			System.out.println(missile.getPosx());
+		}
 		double[] yMissile2 = calc.euler_mis(tAnfang, tAnfang+0.1, yAnfang, 10000, missile);
 		
 		missile.setPosx(yAnfang[0]);

@@ -146,9 +146,8 @@ public class Calculation {
 		m2[1] = m1[1];
 		m2[2] = missile2.getVx();
 		m2[3] = missile2.getVy();
-		Missile missileTest = new Missile(winkel, tank);
+	
 		double endzeit1 = zeit + 30;
-		double endzeit2 = endzeit1 - zeit;
 		double[] y1 = euler_mis(0, endzeit1, m1, 10000, missile1);
 		double[] y2 = euler_mis(zeit, endzeit1, m2, 10000, missile2);
 		final double DELTA = 1E-7;
@@ -159,32 +158,47 @@ public class Calculation {
 			return true;
 		}
 		else {
-			for (int i=0;i<4;i++){
-				//System.out.println(y2[i]);
-				double[] value = parameter;
+			for (int i=0;i<y2.length;i++){
+				Missile missileTest = new Missile(winkel, tank);
+				double[] value = parameter;			// Die vier Parameter (Winkel, Tank, Startzeit und Verbrennung werden in eine temp Variable geschrieben
 				double[] m3 = new double[4];
 				value[i%4] = parameter[i%4] + h;
 				missileTest.setAngle(value[0]);
 				missileTest.setTank(value[1]);
 				missileTest.setStartTime(value[2]);
 				missileTest.setBurnRate(value[3]);
-				m3[0] = m1[0];
-				m3[1] = m1[1];
-				m3[2] = missileTest.getVx();
-				m3[3] = missileTest.getVy();
+				m3[0] = missileTest.getInitalValuex();
+				m3[1] = missileTest.getInitialValuey();
+				m3[2] = missileTest.getInitialVx();
+				m3[3] = missileTest.getInitialVy();
 				double[]res = euler_mis(value[2], endzeit1, m3, 10000, missileTest);
-				for (int j = 0;j<4;j++){
-					//System.out.println(y2[j] + " " + res[j]);
+				for (int j = 0;j<y2.length;j++){
 					jacobi[i][j] = (res[j] - y2[j])/h;
-									}
+				}
 			}
+			gaussSeidel(jacobi, y2);
 			return false;
 		}
 		
 	}
 	
-	public double[][] gaussSeidel(double[][] jacobi){
-		//Ax = b;
+	public double[][] gaussSeidel(double[][] a, double[] yAnfang){
+		double[] b = yAnfang.clone();
+		for (int i = 0;i<yAnfang.length; i++){
+			b[i] = -b[i];
+		}
+		for (int i=0;i<yAnfang.length; i++){
+			for (int j=0;j<yAnfang.length; j++){
+				if (i > j){
+					double x = a[i][j] / a[j][j];
+					a[i][j] = a[i][j] - x * a[j][j];
+					b[i] = b[i] - x * b[j];
+					for (int k=j+1;k<yAnfang.length; k++){
+						a[i][k] = a[i][k] - x * a[j][k];
+					}
+				}
+			}
+		}
 		return null;
 	}
 //------------------------------------------------------------------------------
