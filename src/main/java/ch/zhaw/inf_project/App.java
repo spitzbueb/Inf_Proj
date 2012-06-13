@@ -28,7 +28,6 @@ public class App extends Frame implements Runnable
 {
 	private JFrame frame;
 	private Earth earth = new Earth();
-	private Satellite satellite = new Satellite();
 	private Missile missile = new Missile(0,0);
 	private Missile missile2 = new Missile(0,0);
 	private Thread animThread;
@@ -83,7 +82,7 @@ public class App extends Frame implements Runnable
 		
 		Container contentPane = frame.getContentPane();
 		
-		circlePanel = new CirclePanel(earth,satellite,missile,missile2);
+		circlePanel = new CirclePanel(earth,missile,missile2);
 		contentPane.add(circlePanel);
 		missile.setAngle(45);
 		missile.setTank(45);
@@ -175,7 +174,7 @@ public class App extends Frame implements Runnable
 	{
 		while(Thread.currentThread() == animThread)
 		{
-			Animation.moveSatellite(satellite, animThread, earth, missile, missile2);
+			Animation.moveSatellite(animThread, earth, missile, missile2);
 			
 			
 			if(ready == true && missile2.getState())

@@ -46,7 +46,7 @@ public class CalculationTest extends TestCase{
 	 */
 	public void testSatellite()
 	{
-    	Satellite satellite = new Satellite();
+    	//Satellite satellite = new Satellite();
     	Calculation calc = new Calculation();
     	double[] yAnfang = new double[4];
     	double[] res = new double[4];
@@ -58,12 +58,12 @@ public class CalculationTest extends TestCase{
     	res[3] = 34.859404008704374;
 
     	
-    	yAnfang[0] = satellite.getPosx();
+    /*	yAnfang[0] = satellite.getPosx();
     	yAnfang[1] = satellite.getPosy();
     	yAnfang[2] = satellite.getVx();
-    	yAnfang[3] = satellite.getVy();
+    	yAnfang[3] = satellite.getVy();*/
     	
-    	yEnde = calc.euler_sat(0, 0.1, yAnfang, 2);
+    	//yEnde = calc.euler_sat(0, 0.1, yAnfang, 2);
     	
     	for(int i=0;i<res.length;i++)
     	{

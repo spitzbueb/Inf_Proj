@@ -17,7 +17,7 @@ public class Calculation {
 	 * @param earth
 	 * @return res
 	 */
-	public double[] diff_sat(double[] yAnfang, Earth earth){
+	/*public double[] diff_sat(double[] yAnfang, Earth earth){
 		double[] z = new double[yAnfang.length];
 		double[] res = new double[yAnfang.length];
 		double[] u = new double[2];
@@ -42,7 +42,7 @@ public class Calculation {
 		res[3] = -g * m * (u[1]/Math.pow(uBetrag, 3));
 		
 		return res;
-	}
+	}*/
 //-------------------------------------------------------------------------
 	public double[] diff_mis(double[] yAnfang,double t, Earth earth, Missile missile){
 		double[] z = new double[yAnfang.length];
@@ -94,7 +94,7 @@ public class Calculation {
 	 * @param n
 	 * @return
 	 */
-	public double[] euler_sat(double tAnfang,double tEnde,double[] yAnfang, int n){
+	/*public double[] euler_sat(double tAnfang,double tEnde,double[] yAnfang, int n){
 		double h = (tEnde-tAnfang)/n;	//korrektes h für Unterschiede berechnen
 		
 		double[] y = yAnfang;
@@ -109,7 +109,7 @@ public class Calculation {
 		}
 		
 		return y;
-	}
+	}*/
 //------------------------------------------------------------------------------
 	public double[] euler_mis(double tAnfang,double tEnde,double[] yAnfang, int n,Missile missile){
 		double h = (tEnde-tAnfang)/n;	//korrektes h für Unterschiede berechnen
@@ -142,8 +142,8 @@ public class Calculation {
 		m1[1] = missile1.getInitialValuey();
 		m1[2] = missile1.getInitialVx();
 		m1[3] = missile1.getInitialVy();
-		m2[0] = m1[0];
-		m2[1] = m1[1];
+		m2[0] = missile2.getInitalValuex();
+		m2[1] = missile2.getInitialValuey();
 		m2[2] = missile2.getVx();
 		m2[3] = missile2.getVy();
 	
@@ -160,7 +160,7 @@ public class Calculation {
 		else {
 			for (int i=0;i<y2.length;i++){
 				Missile missileTest = new Missile(winkel, tank);
-				double[] value = parameter;			// Die vier Parameter (Winkel, Tank, Startzeit und Verbrennung werden in eine temp Variable geschrieben
+				double[] value = parameter.clone();			// Die vier Parameter (Winkel, Tank, Startzeit und Verbrennung werden in eine temp Variable geschrieben
 				double[] m3 = new double[4];
 				value[i%4] = parameter[i%4] + h;
 				missileTest.setAngle(value[0]);
@@ -176,13 +176,13 @@ public class Calculation {
 					jacobi[i][j] = (res[j] - y2[j])/h;
 				}
 			}
-			gaussSeidel(jacobi, y2);
+			gaussSeidel(jacobi, parameter, missile2);
 			return false;
 		}
 		
 	}
 	
-	public double[][] gaussSeidel(double[][] a, double[] yAnfang){
+	public void gaussSeidel(double[][] a, double[] yAnfang, Missile missile){
 		double[] b = yAnfang.clone();
 		for (int i = 0;i<yAnfang.length; i++){
 			b[i] = -b[i];
@@ -197,9 +197,33 @@ public class Calculation {
 						a[i][k] = a[i][k] - x * a[j][k];
 					}
 				}
+				System.out.println(a[i][j]);
 			}
+			System.out.println(b[i]);
 		}
-		return null;
+		compute_backwards(a,b, missile);
+	}
+	
+	public void compute_backwards(double[][] a, double[] b, Missile missile){
+		double[] x = new double[b.length];
+		double[] old_para = new double[b.length];
+		old_para[0] = missile.getAngle();
+		System.out.println(missile.getAngle());
+		old_para[1] = missile.getTank();
+		old_para[2] = missile.getStartTime();
+		old_para[3] = missile.getVerbrennung();
+		x[b.length-1] = b[b.length-1] / a[b.length-1][b.length-1];
+		for (int i = b.length-2;i >=0;i--){
+			double sum = 0;
+			for (int j = i;j<b.length;j++){
+				sum = sum + a[i][j] * x[j];
+			}
+			x[i] = (b[i] - sum) / a[i][i];
+			//x[i] = old_para[i] + x[i];
+		}
+		for (int i = 0; i<4;i++){
+			//System.out.println(x[i]);
+		}
 	}
 //------------------------------------------------------------------------------
 	public double[] multScalarVector(double h, double[] k){

@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 
 public class CirclePanel extends JPanel{
 	private Earth earth = new Earth();
-	private Satellite satellite = new Satellite();
+	//private Satellite satellite = new Satellite();
 	private Missile missile,missile2;
 	
 	/**
@@ -24,9 +24,8 @@ public class CirclePanel extends JPanel{
 	 * @param orbit
 	 * @param satellite
 	 */
-	public CirclePanel(Earth earth,Satellite satellite,Missile missile, Missile missile2){
+	public CirclePanel(Earth earth,Missile missile, Missile missile2){
 		this.earth = earth;
-		this.satellite = satellite;
 		this.missile = missile;
 		this.missile2 = missile2;
 		
@@ -43,7 +42,6 @@ public class CirclePanel extends JPanel{
 		g.fillOval(earth.getPosx(), earth.getPosy(), earth.getRad(), earth.getRad());
 		
 		g.setColor(Color.BLACK);
-		//g.fillOval((int) satellite.getPosx(),(int) satellite.getPosy(),(int) satellite.getRad(),(int) satellite.getRad());
 		g.fillRect((int)Math.round(missile.getPosx()), (int)Math.round(missile.getPosy()),6,10);
 		
 		g.setColor(Color.RED);
