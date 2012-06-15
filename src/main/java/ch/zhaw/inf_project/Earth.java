@@ -8,7 +8,7 @@ package ch.zhaw.inf_project;
  */
 public class Earth {
 
-	private int posx,posy,rad,mass;
+	private int posx,posy,rad,mass,g;
 	private String color;
 	
 	/**
@@ -21,6 +21,12 @@ public class Earth {
 		this.rad=200;
 		this.mass = 100000;
 		this.color = "green";
+		this.g = 10;
+	}
+	
+	
+	public int getG(){
+		return g;
 	}
 	
 	/**
